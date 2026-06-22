@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "creation": "2025-01-01 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "depense_interne",
+  "col_break_1",
+  "mandat_numero",
+  "mandat_date",
+  "col_break_2",
+  "facture_numero",
+  "facture_date",
+  "fournisseur",
+  "raison_sociale",
+  "col_break_3",
+  "nom_prenom",
+  "grade",
+  "col_break_4",
+  "montant"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "depense_interne",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "D\u00e9pense Interne",
+   "options": "Depense Interne",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "fieldname": "mandat_numero",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Mandat",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "mandat_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Mandat",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 1,
+   "description": "Affich\u00e9 si la d\u00e9pense concerne un Fournisseur",
+   "fieldname": "facture_numero",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Facture",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "description": "Affich\u00e9 si la d\u00e9pense concerne un Fournisseur",
+   "fieldname": "facture_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Facture",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "description": "Affich\u00e9 si la d\u00e9pense concerne des Frais de Mission",
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom & Pr\u00e9nom",
+   "read_only": 1
+  },
+  {
+   "columns": 1,
+   "description": "Affich\u00e9 si la d\u00e9pense concerne des Frais de Mission",
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Grade",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant (DA)",
+   "options": ">=0",
+   "read_only": 1
+  },
+  {
+   "description": "Affich\u00e9 si la d\u00e9pense concerne un Fournisseur",
+   "fetch_from": "depense_interne.fournisseur",
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "label": "Fournisseur",
+   "options": "Fournisseur",
+   "read_only": 1
+  },
+  {
+   "description": "Affich\u00e9 si la d\u00e9pense concerne un Fournisseur",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison sociale",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-17 17:24:26.876862",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Depense Regularisee Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

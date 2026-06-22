@@ -1,0 +1,327 @@
+{
+ "actions": [],
+ "autoname": "format:FACT-{fournisseur}-{budget_global}-{####}",
+ "creation": "2025-02-20 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "fournisseur",
+  "raison_sociale",
+  "col_break_entete",
+  "numero_facture",
+  "date_facture",
+  "col_break_entete2",
+  "budget_global",
+  "annee_budgetaire",
+  "section_reference",
+  "type_reference",
+  "bon_commande",
+  "col_break_ref",
+  "convention",
+  "section_article",
+  "chapitre",
+  "article",
+  "type_article",
+  "col_break_article",
+  "intitule_article",
+  "code_partition",
+  "intitule_partition",
+  "section_montants",
+  "montant_ht",
+  "taux_tva",
+  "col_break_montants",
+  "montant_tva",
+  "montant_ttc",
+  "section_reception",
+  "bon_livraison",
+  "date_livraison",
+  "col_break_reception",
+  "pv_reception",
+  "date_reception",
+  "section_mandat",
+  "mandat_paiement",
+  "numero_mandat",
+  "date_mandat",
+  "section_statut",
+  "status",
+  "observations"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fournisseur",
+   "options": "Fournisseur",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "fournisseur.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "numero_facture",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Facture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_facture",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Facture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_entete2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_article",
+   "fieldtype": "Section Break",
+   "label": "Article Budg\u00e9taire"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_article",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.type",
+   "fieldname": "type_article",
+   "fieldtype": "Data",
+   "label": "Type Article",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_reference",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9f\u00e9rence (BC ou Convention)"
+  },
+  {
+   "fieldname": "type_reference",
+   "fieldtype": "Select",
+   "label": "Type de R\u00e9f\u00e9rence",
+   "options": "\nBon Commande\nConvention"
+  },
+  {
+   "depends_on": "eval:doc.type_reference=='Bon Commande'",
+   "fieldname": "bon_commande",
+   "fieldtype": "Link",
+   "label": "Bon de Commande",
+   "options": "Bon Commande"
+  },
+  {
+   "fieldname": "col_break_ref",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type_reference=='Convention'",
+   "fieldname": "convention",
+   "fieldtype": "Link",
+   "label": "Convention",
+   "options": "Convention"
+  },
+  {
+   "fieldname": "section_montants",
+   "fieldtype": "Section Break",
+   "label": "Montants"
+  },
+  {
+   "default": "0",
+   "fieldname": "montant_ht",
+   "fieldtype": "Currency",
+   "label": "Montant HT (DA)",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "fieldname": "taux_tva",
+   "fieldtype": "Percent",
+   "label": "Taux TVA (%)",
+   "precision": "0"
+  },
+  {
+   "fieldname": "col_break_montants",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "montant_tva",
+   "fieldtype": "Currency",
+   "label": "Montant TVA (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "montant_ttc",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant TTC (DA)",
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_reception",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9ception / Livraison"
+  },
+  {
+   "fieldname": "bon_livraison",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Bon de Livraison"
+  },
+  {
+   "fieldname": "date_livraison",
+   "fieldtype": "Date",
+   "label": "Date Livraison"
+  },
+  {
+   "fieldname": "col_break_reception",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pv_reception",
+   "fieldtype": "Data",
+   "label": "N\u00b0 PV de R\u00e9ception"
+  },
+  {
+   "fieldname": "date_reception",
+   "fieldtype": "Date",
+   "label": "Date R\u00e9ception"
+  },
+  {
+   "fieldname": "section_mandat",
+   "fieldtype": "Section Break",
+   "label": "Mandatement"
+  },
+  {
+   "fieldname": "mandat_paiement",
+   "fieldtype": "Link",
+   "label": "Mandat de Paiement",
+   "options": "Mandat Paiement"
+  },
+  {
+   "fieldname": "numero_mandat",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Mandat",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_mandat",
+   "fieldtype": "Date",
+   "label": "Date Mandat",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_statut",
+   "fieldtype": "Section Break",
+   "label": "Statut"
+  },
+  {
+   "default": "En Attente",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut",
+   "options": "En Attente\nMandat\u00e9\nPay\u00e9"
+  },
+  {
+   "fieldname": "observations",
+   "fieldtype": "Small Text",
+   "label": "Observations"
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre"
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Code Partition"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice ",
+   "options": "Budget Global",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 14:45:50.067523",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Facture Fournisseur",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

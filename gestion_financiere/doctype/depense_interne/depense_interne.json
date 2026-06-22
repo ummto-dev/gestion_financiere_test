@@ -1,0 +1,409 @@
+{
+ "actions": [],
+ "creation": "2025-02-19 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "budget_global",
+  "annee_budgetaire",
+  "chapitre",
+  "intitule_chapitre",
+  "article",
+  "col_break_entete",
+  "code_article",
+  "intitule_article",
+  "code_partition",
+  "intitule_partition",
+  "col_break_entete2",
+  "semestre",
+  "numero_interne",
+  "date_depense",
+  "provision_reference",
+  "section_type",
+  "type_depense",
+  "section_fournisseur",
+  "fournisseur",
+  "raison_sociale",
+  "col_break_fourn",
+  "factures",
+  "section_mission",
+  "frais_mission",
+  "type_compte_mission",
+  "col_break_mission",
+  "beneficiaires",
+  "section_montant",
+  "montant_total",
+  "montant_lettres",
+  "col_break_montant",
+  "objet_depense",
+  "section_solde",
+  "ancien_solde",
+  "col_break_solde",
+  "montant_operation",
+  "col_break_solde1",
+  "nouveau_solde",
+  "section_observations",
+  "observations",
+  "section_mandat",
+  "mandat_paiement",
+  "numero_mandat",
+  "date_mandat",
+  "section_regularisation",
+  "fiche_regularisation",
+  "numero_fiche_regularisation",
+  "date_regularisation",
+  "col_break_reg",
+  "is_regularisation_unique",
+  "status",
+  "date_envoi_comptable"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre"
+  },
+  {
+   "fieldname": "semestre",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Semestre",
+   "options": "S1\nS2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_entete2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "numero_interne",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "N\u00b0 Interne",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_depense",
+   "fieldtype": "Date",
+   "label": "Date D\u00e9pense"
+  },
+  {
+   "fieldname": "provision_reference",
+   "fieldtype": "Link",
+   "label": "Provision de R\u00e9f\u00e9rence",
+   "options": "Fiche Budgetaire",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_type",
+   "fieldtype": "Section Break",
+   "label": "Type de D\u00e9pense"
+  },
+  {
+   "fieldname": "type_depense",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type de D\u00e9pense",
+   "options": "Fournisseur\nFrais Mission",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.type_depense=='Fournisseur'",
+   "fieldname": "section_fournisseur",
+   "fieldtype": "Section Break",
+   "label": "D\u00e9pense Fournisseur"
+  },
+  {
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "label": "Fournisseur",
+   "options": "Fournisseur"
+  },
+  {
+   "fetch_from": "fournisseur.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_fourn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "factures",
+   "fieldtype": "Table",
+   "label": "Factures",
+   "options": "Facture Depense Element"
+  },
+  {
+   "depends_on": "eval:doc.type_depense=='Frais Mission'",
+   "fieldname": "section_mission",
+   "fieldtype": "Section Break",
+   "label": "Frais de Mission"
+  },
+  {
+   "fieldname": "frais_mission",
+   "fieldtype": "Link",
+   "label": "Frais Mission",
+   "options": "Frais Mission"
+  },
+  {
+   "fieldname": "type_compte_mission",
+   "fieldtype": "Select",
+   "label": "Type de Compte",
+   "options": "Banque\nCCP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_mission",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiaires",
+   "fieldtype": "Table",
+   "label": "B\u00e9n\u00e9ficiaires",
+   "options": "Beneficiaire Depense Element"
+  },
+  {
+   "fieldname": "section_montant",
+   "fieldtype": "Section Break",
+   "label": "Montant et Objet"
+  },
+  {
+   "bold": 1,
+   "fieldname": "montant_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Total (DA)",
+   "precision": "2",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_montant",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "objet_depense",
+   "fieldtype": "Small Text",
+   "label": "Objet de la D\u00e9pense"
+  },
+  {
+   "fieldname": "section_solde",
+   "fieldtype": "Section Break",
+   "label": "Mouvement Budg\u00e9taire"
+  },
+  {
+   "fieldname": "ancien_solde",
+   "fieldtype": "Currency",
+   "label": "Ancien Solde (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_solde",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_operation",
+   "fieldtype": "Currency",
+   "label": "Montant Op\u00e9ration (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_solde1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nouveau_solde",
+   "fieldtype": "Currency",
+   "label": "Nouveau Solde (DA)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_observations",
+   "fieldtype": "Section Break",
+   "label": "Observations"
+  },
+  {
+   "fieldname": "observations",
+   "fieldtype": "Small Text",
+   "label": "Observations"
+  },
+  {
+   "fieldname": "section_mandat",
+   "fieldtype": "Section Break",
+   "label": "Mandatement"
+  },
+  {
+   "fieldname": "mandat_paiement",
+   "fieldtype": "Link",
+   "label": "Mandat de Paiement",
+   "options": "Mandat Paiement"
+  },
+  {
+   "fieldname": "numero_mandat",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Mandat"
+  },
+  {
+   "fieldname": "date_mandat",
+   "fieldtype": "Date",
+   "label": "Date Mandat"
+  },
+  {
+   "fieldname": "section_regularisation",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9gularisation"
+  },
+  {
+   "fieldname": "fiche_regularisation",
+   "fieldtype": "Link",
+   "label": "Fiche R\u00e9gularisation",
+   "options": "Fiche Budgetaire",
+   "read_only": 1
+  },
+  {
+   "default": "None",
+   "fieldname": "numero_fiche_regularisation",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Fiche R\u00e9gularisation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_regularisation",
+   "fieldtype": "Date",
+   "label": "Date R\u00e9gularisation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_reg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_regularisation_unique",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "R\u00e9gularisation Unique",
+   "read_only": 1
+  },
+  {
+   "default": "Brouillon",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Brouillon\nValid\u00e9\nMandat\u00e9\nEnvoy\u00e9 Comptable\nR\u00e9gl\u00e9\nR\u00e9gularis\u00e9\nRejet\u00e9 D\u00e9finitif"
+  },
+  {
+   "fieldname": "date_envoi_comptable",
+   "fieldtype": "Date",
+   "label": "Date Envoi Comptable"
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre"
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition"
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Code Partition"
+  },
+  {
+   "fieldname": "montant_lettres",
+   "fieldtype": "Small Text",
+   "label": "Montant en lettres"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-20 19:04:10.993907",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Depense Interne",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

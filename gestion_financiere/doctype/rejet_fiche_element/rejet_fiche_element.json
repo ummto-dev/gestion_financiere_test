@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "creation": "2026-03-24 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "istable": 1,
+ "field_order": [
+  "numero_rejet",
+  "date_rejet",
+  "motif_rejet",
+  "col_break1",
+  "rejet_definitif",
+  "date_correction",
+  "corrige_par",
+  "corrections"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "numero_rejet",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "N° Rejet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_rejet",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Rejet CF",
+   "read_only": 1
+  },
+  {
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Motif de Rejet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "rejet_definitif",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Rejet Définitif",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_correction",
+   "fieldtype": "Date",
+   "label": "Date Correction",
+   "read_only": 1
+  },
+  {
+   "fieldname": "corrige_par",
+   "fieldtype": "Data",
+   "label": "Corrigé par",
+   "read_only": 1
+  },
+  {
+   "fieldname": "corrections",
+   "fieldtype": "Small Text",
+   "label": "Corrections",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "modified": "2026-03-24 00:00:00",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Rejet Fiche Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 0
+}

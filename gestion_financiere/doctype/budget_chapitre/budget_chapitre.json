@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{budget_global}-{code}",
+ "creation": "2026-01-18 14:28:58.425016",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "budget_global",
+  "annee_budgetaire",
+  "chapitre",
+  "montant",
+  "code",
+  "intitule",
+  "cost_center",
+  "titre"
+ ],
+ "fields": [
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Chapitre",
+   "options": "Chapitre",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "chapitre.code",
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "label": "Code Chapitre",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "read_only": 1
+  },
+  {
+   "description": "Montant fix\u00e9 par le service central",
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Allou\u00e9 (DA)",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget.cost_center",
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Facult\u00e9",
+   "options": "Cost Center",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "chapitre.titre",
+   "fieldname": "titre",
+   "fieldtype": "Link",
+   "label": "Titre",
+   "options": "Titre",
+   "read_only": 1
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Budget",
+   "options": "Budget Global"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-21 11:39:30.991201",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Budget Chapitre",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

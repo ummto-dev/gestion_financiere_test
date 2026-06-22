@@ -1,0 +1,10 @@
+recursive-include gestion_financiere *.py
+recursive-include gestion_financiere *.json
+recursive-include gestion_financiere *.md
+recursive-include gestion_financiere *.txt
+recursive-include gestion_financiere *.html
+recursive-include gestion_financiere *.css
+recursive-include gestion_financiere *.js
+recursive-include gestion_financiere *.svg
+recursive-include gestion_financiere *.png
+recursive-include gestion_financiere *.jpg

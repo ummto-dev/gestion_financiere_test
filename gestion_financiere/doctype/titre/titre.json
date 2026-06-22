@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:{annee}-{code}",
+ "creation": "2026-01-13 14:03:18.556966",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "titre_section",
+  "annee",
+  "code",
+  "intitule",
+  "section"
+ ],
+ "fields": [
+  {
+   "fieldname": "titre_section",
+   "fieldtype": "Section Break",
+   "label": "Titre"
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "intitule",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Intitul\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Section",
+   "options": "Section",
+   "reqd": 1
+  },
+  {
+   "fieldname": "annee",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budgetaire",
+   "options": "Annee Budgetaire"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-05 10:27:11.742304",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Titre",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "code",
+ "translated_doctype": 1
+}

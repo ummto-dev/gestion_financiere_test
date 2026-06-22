@@ -1,0 +1,58 @@
+[
+ {
+  "brr": null,
+  "company": "Université Mouloud Mammeri Tizi Ouzou",
+  "cost_center_name": "Université Mouloud Mammeri Tizi Ouzou",
+  "cost_center_number": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Cost Center",
+  "is_group": 1,
+  "modified": "2026-06-14 11:25:25.706875",
+  "name": "Université Mouloud Mammeri Tizi Ouzou - UMMTO",
+  "old_parent": "",
+  "parent_cost_center": null
+ },
+ {
+  "brr": null,
+  "company": "Université Mouloud Mammeri Tizi Ouzou",
+  "cost_center_name": "Principal",
+  "cost_center_number": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Cost Center",
+  "is_group": 0,
+  "modified": "2026-06-14 11:25:25.714781",
+  "name": "Principal - UMMTO",
+  "old_parent": "Université Mouloud Mammeri Tizi Ouzou - UMMTO",
+  "parent_cost_center": "Université Mouloud Mammeri Tizi Ouzou - UMMTO"
+ },
+ {
+  "brr": null,
+  "company": "Université Mouloud Mammeri Tizi Ouzou",
+  "cost_center_name": "Faculté des Lettres et des Langues",
+  "cost_center_number": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Cost Center",
+  "is_group": 0,
+  "modified": "2026-06-14 13:38:13.327647",
+  "name": "Faculté des Lettres et des Langues - UMMTO",
+  "old_parent": "Université Mouloud Mammeri Tizi Ouzou - UMMTO",
+  "parent_cost_center": "Université Mouloud Mammeri Tizi Ouzou - UMMTO"
+ },
+ {
+  "brr": null,
+  "company": "Université Mouloud Mammeri Tizi Ouzou",
+  "cost_center_name": "Faculté des Sciences",
+  "cost_center_number": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Cost Center",
+  "is_group": 0,
+  "modified": "2026-06-14 11:30:20.562931",
+  "name": "Faculté des Sciences - UMMTO",
+  "old_parent": "Université Mouloud Mammeri Tizi Ouzou - UMMTO",
+  "parent_cost_center": "Université Mouloud Mammeri Tizi Ouzou - UMMTO"
+ }
+]

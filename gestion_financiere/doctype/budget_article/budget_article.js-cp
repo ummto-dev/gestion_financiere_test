@@ -1,0 +1,79 @@
+// budget_article.js
+
+frappe.ui.form.on('Budget Article', {
+    
+    refresh(frm) {
+        frm.trigger('afficher_solde_chapitre');
+    },
+
+    chapitre(frm) {
+        frm.trigger('afficher_solde_chapitre');
+    },
+
+    montant(frm) {
+        frm.trigger('afficher_solde_chapitre');
+        frm.trigger('verifier_depassement');
+    },
+
+    afficher_solde_chapitre(frm) {
+        if (!frm.doc.chapitre) return;
+
+        frappe.call({
+            method: 'gestion_financiere.gestion_financiere.doctype.budget_article.budget_article.get_montant_disponible_chapitre',
+            args: { chapitre: frm.doc.chapitre },
+            callback(r) {
+                if (!r.exc && r.message) {
+                    const { total, alloue, disponible } = r.message;
+                    const taux = total > 0 ? (alloue / total * 100).toFixed(1) : 0;
+                    
+                    // Couleur selon le taux d'utilisation
+                    let couleur = '#28a745';  // Vert
+                    if (taux > 90) couleur = '#dc3545';       // Rouge
+                    else if (taux > 75) couleur = '#ffc107';  // Orange
+                    
+                    frm.dashboard.add_comment(
+                        `<b>Budget Chapitre ${frm.doc.chapitre}</b><br>
+                         <b>Total alloué :</b> ${format_currency(total)} DA<br>
+                         <b>Déjà réparti sur articles :</b> ${format_currency(alloue)} DA (${taux}%)<br>
+                         <b>Disponible :</b> 
+                         <span style="color:${couleur};font-size:1.1em;font-weight:bold">
+                             ${format_currency(disponible)} DA
+                         </span>`,
+                        'blue', true
+                    );
+                }
+            }
+        });
+    },
+
+    verifier_depassement(frm) {
+        if (!frm.doc.chapitre || !frm.doc.montant) return;
+
+        frappe.call({
+            method: 'gestion_financiere.gestion_financiere.doctype.budget_article.budget_article.get_montant_disponible_chapitre',
+            args: { chapitre: frm.doc.chapitre },
+            callback(r) {
+                if (!r.exc && r.message) {
+                    const { disponible } = r.message;
+                    
+                    // Exclure le montant de cet article si on modifie
+                    const montant_autres = disponible;
+                    
+                    if (frm.doc.montant > montant_autres) {
+                        frappe.show_alert({
+                            message: __('⚠️ ATTENTION : Le montant dépasse le budget disponible du chapitre !'),
+                            indicator: 'red'
+                        }, 10);
+                    }
+                }
+            }
+        });
+    },
+});
+
+function format_currency(val) {
+    return new Intl.NumberFormat('fr-DZ', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(parseFloat(val) || 0);
+}

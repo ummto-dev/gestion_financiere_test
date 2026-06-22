@@ -1,0 +1,497 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:BC-{budget_global}-{numero_bon_commande}-{date_commande}",
+ "creation": "2026-01-20 14:48:44.119949",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "numero_bon_commande",
+  "date_commande",
+  "column_break_lxij",
+  "ordonnateur",
+  "denomination",
+  "col_break_entete",
+  "budget_global",
+  "annee_budgetaire",
+  "section_prestataire",
+  "prestataire",
+  "nom_prenom",
+  "raison_sociale",
+  "adresse_prestataire",
+  "activite_fournisseur",
+  "col_break_prest",
+  "numero_compte",
+  "nif_fournisseur",
+  "ai_fournisseur",
+  "nis_fournisseur",
+  "section_imputation",
+  "titre",
+  "intitule_titre",
+  "chapitre",
+  "intitule_chapitre",
+  "col_break_imp",
+  "article",
+  "code_article",
+  "intitule_article",
+  "col_break_imp2",
+  "code_partition",
+  "partition",
+  "section_nature",
+  "nature_commande",
+  "type_depense",
+  "section_objet",
+  "objet_detaille",
+  "section_elements",
+  "bc_element",
+  "section_montants",
+  "total_ht",
+  "taux_tva",
+  "col_break_montants",
+  "montant_tva",
+  "total_ttc",
+  "col_break_montants2",
+  "montant_en_lettres",
+  "section_livraison",
+  "delai_livraison",
+  "unite_delai",
+  "col_break_livraison",
+  "date_limite_livraison",
+  "section_validation",
+  "visa_cf",
+  "date_visa_cf",
+  "col_break_validation",
+  "status",
+  "section_rejet",
+  "motif_rejet",
+  "section_execution",
+  "fiche_depense",
+  "montant_factures",
+  "col_break_exec",
+  "reste_a_facturer",
+  "rc_fournisseur"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "bold": 1,
+   "fieldname": "numero_bon_commande",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Bon de Commande"
+  },
+  {
+   "fieldname": "date_commande",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date de Commande",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ordonnateur",
+   "fieldtype": "Link",
+   "label": "Ordonnateur",
+   "options": "Cost Center",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "ordonnateur.cost_center_name",
+   "fieldname": "denomination",
+   "fieldtype": "Data",
+   "label": "D\u00e9nomination Ordonnateur",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_prestataire",
+   "fieldtype": "Section Break",
+   "label": "Prestataire"
+  },
+  {
+   "fieldname": "prestataire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Prestataire",
+   "options": "Fournisseur",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "prestataire.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_prest",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "prestataire.adresse",
+   "fieldname": "adresse_prestataire",
+   "fieldtype": "Data",
+   "label": "Adresse",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "prestataire.numero_compte",
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Compte",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_nature",
+   "fieldtype": "Section Break",
+   "label": "Nature de la Commande"
+  },
+  {
+   "fieldname": "nature_commande",
+   "fieldtype": "Select",
+   "label": "Nature de Commande",
+   "options": "\nFournitures\n\u00c9quipements\nServices\nTravaux",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_depense",
+   "fieldtype": "Select",
+   "label": "Type de D\u00e9pense",
+   "options": "\nFonctionnement\nEquipement\nAutres",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_imputation",
+   "fieldtype": "Section Break",
+   "label": "Imputation Budg\u00e9taire"
+  },
+  {
+   "fieldname": "titre",
+   "fieldtype": "Link",
+   "label": "Titre",
+   "options": "Titre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_imp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000
+  },
+  {
+   "fieldname": "section_objet",
+   "fieldtype": "Section Break",
+   "label": "Objet"
+  },
+  {
+   "fieldname": "objet_detaille",
+   "fieldtype": "Small Text",
+   "label": "Objet D\u00e9taill\u00e9 de la Commande",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_elements",
+   "fieldtype": "Section Break",
+   "label": "\u00c9l\u00e9ments du Bon de Commande"
+  },
+  {
+   "fieldname": "bc_element",
+   "fieldtype": "Table",
+   "label": "\u00c9l\u00e9ments",
+   "options": "BC Elements"
+  },
+  {
+   "fieldname": "section_montants",
+   "fieldtype": "Section Break",
+   "label": "Montants"
+  },
+  {
+   "fieldname": "total_ht",
+   "fieldtype": "Currency",
+   "label": "Total HT (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "taux_tva",
+   "fieldtype": "Percent",
+   "label": "Taux TVA (%)",
+   "precision": "0"
+  },
+  {
+   "fieldname": "col_break_montants",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_tva",
+   "fieldtype": "Currency",
+   "label": "Montant TVA (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_ttc",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total TTC (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_montants2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_en_lettres",
+   "fieldtype": "Small Text",
+   "label": "Montant en Lettres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_livraison",
+   "fieldtype": "Section Break",
+   "label": "D\u00e9lai de Livraison"
+  },
+  {
+   "fieldname": "delai_livraison",
+   "fieldtype": "Int",
+   "label": "D\u00e9lai de Livraison",
+   "reqd": 1
+  },
+  {
+   "default": "Jours",
+   "fieldname": "unite_delai",
+   "fieldtype": "Select",
+   "label": "Unit\u00e9",
+   "options": "Jours\nSemaines\nMois"
+  },
+  {
+   "fieldname": "col_break_livraison",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_limite_livraison",
+   "fieldtype": "Date",
+   "label": "Date Limite de Livraison",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_validation",
+   "fieldtype": "Section Break",
+   "label": "Validation"
+  },
+  {
+   "fieldname": "visa_cf",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Visa CF"
+  },
+  {
+   "fieldname": "date_visa_cf",
+   "fieldtype": "Date",
+   "label": "Date Visa CF"
+  },
+  {
+   "fieldname": "col_break_validation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Brouillon",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut",
+   "options": "Brouillon\nValid\u00e9\nSign\u00e9 Doyen\nEnvoy\u00e9 CF\nVis\u00e9 CF\nRejet\u00e9\nRejet\u00e9 D\u00e9finitif\nEx\u00e9cution\nSold\u00e9"
+  },
+  {
+   "depends_on": "eval:in_list(['Rejet\u00e9', 'Rejet\u00e9 D\u00e9finitif'], doc.status)",
+   "fieldname": "section_rejet",
+   "fieldtype": "Section Break",
+   "label": "Motif Rejet"
+  },
+  {
+   "depends_on": "eval:in_list(['Rejet\u00e9', 'Rejet\u00e9 D\u00e9finitif'], doc.status)",
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "label": "Motif du Rejet"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_execution",
+   "fieldtype": "Section Break",
+   "label": "Suivi d'Ex\u00e9cution"
+  },
+  {
+   "fieldname": "fiche_depense",
+   "fieldtype": "Link",
+   "label": "Fiche D\u00e9pense",
+   "options": "Fiche Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant_factures",
+   "fieldtype": "Currency",
+   "label": "Montant Factures (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_exec",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reste_a_facturer",
+   "fieldtype": "Currency",
+   "label": "Reste \u00e0 Facturer (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_lxij",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "prestataire.activite",
+   "fieldname": "activite_fournisseur",
+   "fieldtype": "Data",
+   "label": "Activit\u00e9"
+  },
+  {
+   "fetch_from": "prestataire.nif",
+   "fieldname": "nif_fournisseur",
+   "fieldtype": "Data",
+   "label": "NIF"
+  },
+  {
+   "fetch_from": "prestataire.article_imposition",
+   "fieldname": "ai_fournisseur",
+   "fieldtype": "Data",
+   "label": "AI"
+  },
+  {
+   "fetch_from": "prestataire.n_rc",
+   "fieldname": "rc_fournisseur",
+   "fieldtype": "Data",
+   "label": "RC"
+  },
+  {
+   "fetch_from": "prestataire.nis",
+   "fieldname": "nis_fournisseur",
+   "fieldtype": "Data",
+   "label": "NIC"
+  },
+  {
+   "fetch_from": "titre.intitule",
+   "fieldname": "intitule_titre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Titre"
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "length": 1000
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Code Partition"
+  },
+  {
+   "fetch_from": "prestataire.nom_prenom",
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "label": "Nom et pr\u00e9nom"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 20:08:55.013912",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Bon Commande",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

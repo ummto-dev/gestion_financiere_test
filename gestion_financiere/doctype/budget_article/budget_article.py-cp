@@ -1,0 +1,87 @@
+import frappe
+from frappe import _
+from frappe.model.document import Document
+from frappe.utils import flt
+
+
+class BudgetArticle(Document):
+
+    def validate(self):
+        self._validate_montant_chapitre()
+
+    def _validate_montant_chapitre(self):
+        """
+        Vérifie que la somme des montants des articles d'un chapitre
+        ne dépasse pas le montant alloué au Budget Chapitre.
+        """
+        if not self.chapitre:
+            return
+
+        # Récupérer le montant du Budget Chapitre
+        # Budget Chapitre naming = {chapitre}, donc name = chapitre
+        montant_chapitre = frappe.db.get_value(
+            "Budget Chapitre", self.chapitre, "montant"
+        )
+        
+        if not montant_chapitre:
+            frappe.throw(_(
+                "Aucun Budget Chapitre trouvé pour le chapitre {0}. "
+                "Veuillez d'abord créer un Budget Chapitre avec name = {0}."
+            ).format(self.chapitre))
+
+        # Calculer la somme des montants de TOUS les articles de ce chapitre
+        # (y compris celui-ci)
+        total_articles = frappe.db.sql("""
+            SELECT SUM(montant)
+            FROM `tabBudget Article`
+            WHERE chapitre = %s
+              AND name != %s
+        """, (self.chapitre, self.name or ""))[0][0] or 0
+
+        # Ajouter le montant de cet article
+        total_avec_cet_article = flt(total_articles) + flt(self.montant)
+
+        if total_avec_cet_article > flt(montant_chapitre):
+            frappe.throw(_(
+                "Dépassement du budget du chapitre !<br><br>"
+                "<b>Chapitre :</b> {0}<br>"
+                "<b>Montant alloué au chapitre :</b> {1} DA<br>"
+                "<b>Montant déjà alloué aux autres articles :</b> {2} DA<br>"
+                "<b>Montant de cet article :</b> {3} DA<br>"
+                "<b>Total après cet article :</b> {4} DA<br><br>"
+                "<b>Dépassement :</b> {5} DA"
+            ).format(
+                self.chapitre,
+                flt(montant_chapitre),
+                flt(total_articles),
+                flt(self.montant),
+                total_avec_cet_article,
+                total_avec_cet_article - flt(montant_chapitre)
+            ))
+
+
+@frappe.whitelist()
+def get_montant_disponible_chapitre(chapitre):
+    """
+    Retourne le montant restant disponible pour un chapitre.
+    Appelé depuis le JS pour afficher un indicateur.
+    """
+    # Montant total du chapitre
+    montant_chapitre = frappe.db.get_value(
+        "Budget Chapitre", chapitre, "montant"
+    )
+    if not montant_chapitre:
+        return {"disponible": 0, "total": 0, "alloue": 0}
+
+    # Somme des articles déjà alloués
+    total_articles = frappe.db.sql("""
+        SELECT SUM(montant)
+        FROM `tabBudget Article`
+        WHERE chapitre = %s
+    """, chapitre)[0][0] or 0
+
+    return {
+        "total": flt(montant_chapitre),
+        "alloue": flt(total_articles),
+        "disponible": flt(montant_chapitre) - flt(total_articles),
+    }

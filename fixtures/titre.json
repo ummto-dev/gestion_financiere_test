@@ -1,0 +1,42 @@
+[
+ {
+  "annee": "2026-32363-FSBSA",
+  "code": "Titre1",
+  "docstatus": 0,
+  "doctype": "Titre",
+  "intitule": "Dépenses des Personnels ",
+  "modified": "2026-04-14 13:13:31.217862",
+  "name": "2026-32363-FSBSA-Titre1",
+  "section": "2"
+ },
+ {
+  "annee": "2026-32363-FSBSA",
+  "code": "Titre3",
+  "docstatus": 0,
+  "doctype": "Titre",
+  "intitule": "Dépenses d'investessement ",
+  "modified": "2026-04-14 13:13:31.420736",
+  "name": "2026-32363-FSBSA-Titre3",
+  "section": "2"
+ },
+ {
+  "annee": "2026-32363-FSBSA",
+  "code": "Titre4",
+  "docstatus": 0,
+  "doctype": "Titre",
+  "intitule": "Frais de transfert",
+  "modified": "2026-04-14 13:13:31.470090",
+  "name": "2026-32363-FSBSA-Titre4",
+  "section": "2"
+ },
+ {
+  "annee": "2026-32363-FSBSA",
+  "code": "Titre2",
+  "docstatus": 0,
+  "doctype": "Titre",
+  "intitule": "Dépenses de fonctionnement des services",
+  "modified": "2026-04-14 13:13:31.316188",
+  "name": "2026-32363-FSBSA-Titre2",
+  "section": "2"
+ }
+]

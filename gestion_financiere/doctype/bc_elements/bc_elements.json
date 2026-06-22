@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-01-21 09:29:13.824751",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "designation",
+  "unite",
+  "quantite",
+  "prix_unitaire",
+  "montant"
+ ],
+ "fields": [
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "D\u00e9signation"
+  },
+  {
+   "fieldname": "unite",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit\u00e9"
+  },
+  {
+   "fieldname": "quantite",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Quantit\u00e9",
+   "precision": "0"
+  },
+  {
+   "fieldname": "prix_unitaire",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Prix Unitaire"
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Montant"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-14 14:40:44.563807",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "BC Elements",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:FRAI-{code_ordonnateur}-{article}-{#####}",
+ "creation": "2026-02-04 13:58:28.052263",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "faculte",
+  "annee_budgetaire",
+  "code_ordonnateur",
+  "col_break_1",
+  "article",
+  "type_missionnaire",
+  "objet_mission",
+  "section_beneficiaires",
+  "charger_beneficiaires",
+  "table_beneficiaires",
+  "type_compte_unique",
+  "montant_total"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "fieldname": "type_missionnaire",
+   "fieldtype": "Select",
+   "label": "Type  missionnaire",
+   "options": "Etudiants\nEnseignant\nPersonnel Administratif"
+  },
+  {
+   "fieldname": "objet_mission",
+   "fieldtype": "Data",
+   "label": "Objet mission"
+  },
+  {
+   "fieldname": "faculte",
+   "fieldtype": "Link",
+   "label": "Faculte",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budgetaire",
+   "options": "Annee Budgetaire"
+  },
+  {
+   "fieldname": "col_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Budget Article"
+  },
+  {
+   "fieldname": "objet_mission",
+   "fieldtype": "Data",
+   "label": "Objet mission"
+  },
+  {
+   "fieldname": "section_beneficiaires",
+   "fieldtype": "Section Break",
+   "label": "B\u00e9n\u00e9ficiaires"
+  },
+  {
+   "description": "S\u00e9lectionnez d'abord le Type Missionnaire",
+   "fieldname": "charger_beneficiaires",
+   "fieldtype": "Button",
+   "label": "Charger les B\u00e9n\u00e9ficiaires"
+  },
+  {
+   "fieldname": "table_beneficiaires",
+   "fieldtype": "Table",
+   "label": "Table b\u00e9n\u00e9ficiaires",
+   "options": "Etat Frais Mission Elements"
+  },
+  {
+   "description": "Type de compte des b\u00e9n\u00e9ficiaires (Banque, CCP, ou Mixte)",
+   "fieldname": "type_compte_unique",
+   "fieldtype": "Data",
+   "label": "Type de Compte",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant_total",
+   "fieldtype": "Currency",
+   "label": "Montant Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "code_ordonnateur",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "code ordonnateur",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 11:07:34.602393",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Frais Mission",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,50 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"4970_w14es\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"Block\",\"col\":12}},{\"id\":\"2K4sJQKfIj\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"notifications\",\"col\":12}},{\"id\":\"rBWTRb5tlr\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"op\u00e9rations recentes\",\"col\":12}},{\"id\":\"qdSs0urFkY\",\"type\":\"custom_block\",\"data\":{\"custom_block_name\":\"nav\",\"col\":12}}]",
+ "creation": "2026-05-18 14:51:53.779854",
+ "custom_blocks": [
+  {
+   "custom_block_name": "op\u00e9rations recentes",
+   "label": "op\u00e9rations recentes"
+  },
+  {
+   "custom_block_name": "notifications",
+   "label": "notifications"
+  },
+  {
+   "custom_block_name": "Block",
+   "label": "Block"
+  },
+  {
+   "custom_block_name": "nav",
+   "label": "nav"
+  }
+ ],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "equity",
+ "idx": 1,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Centre Financier",
+ "links": [],
+ "modified": "2026-05-21 12:19:10.230237",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Centre Financier",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "userrole"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "Centre Financier"
+}

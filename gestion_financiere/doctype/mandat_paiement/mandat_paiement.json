@@ -1,0 +1,544 @@
+{
+ "actions": [],
+ "autoname": "format:MANDAT-{budget_global}-{#####}",
+ "creation": "2025-02-21 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "budget_global",
+  "annee_budgetaire",
+  "column_break_entete",
+  "numero_mandat",
+  "date_mandat",
+  "section_source",
+  "type_source",
+  "depense_interne",
+  "fiche_depense",
+  "situation_paiement",
+  "section_imputation",
+  "chapitre",
+  "code_chapitre",
+  "intitule_chapitre",
+  "col_break_imp",
+  "article",
+  "code_article",
+  "intitule_article",
+  "col_break_imp2",
+  "partition",
+  "intitule_partition",
+  "section_creancier",
+  "type_creancier",
+  "fournisseur",
+  "frais_mission_apriori",
+  "col_break_creancier",
+  "nom_raison_sociale",
+  "type_compte",
+  "domicile",
+  "numero_agence",
+  "numero_compte",
+  "section_factures_selection",
+  "factures_a_mandater",
+  "section_liste_personnes",
+  "btn_choisir_beneficiaires",
+  "liste_personnes",
+  "section_montant",
+  "montant_total",
+  "col_break_montant",
+  "montant_lettres",
+  "section_objet",
+  "objet_paiement",
+  "column_break_axgo",
+  "factures_concernees",
+  "section_paiement",
+  "mode_paiement",
+  "numero_cheque",
+  "date_cheque",
+  "col_break_paiement",
+  "date_paiement",
+  "code_mode_paiement",
+  "section_partie_comptable",
+  "numero_admission",
+  "date_admission",
+  "numero_jc",
+  "col_break_comptable",
+  "folio",
+  "mois",
+  "ordre",
+  "section_statut",
+  "status_admission",
+  "nb_rejets",
+  "section_rejets",
+  "historique_rejets",
+  "section_pieces_jointes",
+  "pieces_jointes",
+  "amended_from",
+  "motif_rejet"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "reqd": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "fieldname": "numero_mandat",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "N\u00b0 Mandat"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_mandat",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Mandat"
+  },
+  {
+   "fieldname": "section_source",
+   "fieldtype": "Section Break",
+   "label": "Source du Mandat"
+  },
+  {
+   "fieldname": "type_source",
+   "fieldtype": "Select",
+   "label": "Type de Source",
+   "options": "\nDepense Interne\nFiche Depense"
+  },
+  {
+   "depends_on": "eval:doc.type_source=='Depense Interne'",
+   "fieldname": "depense_interne",
+   "fieldtype": "Link",
+   "label": "D\u00e9pense Interne (A posteriori)",
+   "options": "Depense Interne"
+  },
+  {
+   "depends_on": "eval:doc.type_source=='Fiche Depense'",
+   "fieldname": "situation_paiement",
+   "fieldtype": "Link",
+   "label": "Situation Paiement",
+   "options": "Situation Paiement"
+  },
+  {
+   "depends_on": "eval:doc.type_source=='Fiche Depense'",
+   "fieldname": "fiche_depense",
+   "fieldtype": "Link",
+   "label": "Fiche D\u00e9pense (A priori)",
+   "options": "Fiche Budgetaire",
+   "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:doc.type_creancier=='Fournisseur Unique'",
+   "fieldname": "section_factures_selection",
+   "fieldtype": "Section Break",
+   "label": "S\u00e9lection des Factures"
+  },
+  {
+   "fieldname": "factures_a_mandater",
+   "fieldtype": "Table",
+   "label": "Factures \u00e0 Mandater",
+   "options": "Facture Mandat Element"
+  },
+  {
+   "fieldname": "section_imputation",
+   "fieldtype": "Section Break",
+   "label": "Imputation Budg\u00e9taire"
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "chapitre.code",
+   "fieldname": "code_chapitre",
+   "fieldtype": "Data",
+   "label": "Code Chapitre",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "partition",
+   "fieldtype": "Data",
+   "label": "Partition"
+  },
+  {
+   "fieldname": "section_creancier",
+   "fieldtype": "Section Break",
+   "label": "Cr\u00e9ancier"
+  },
+  {
+   "fieldname": "type_creancier",
+   "fieldtype": "Select",
+   "label": "Type de Cr\u00e9ancier",
+   "options": "Fournisseur Unique\nListe Personnes\nDivers Banque\nDivers CCP",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.type_creancier=='Fournisseur Unique'",
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "label": "Fournisseur",
+   "options": "Fournisseur"
+  },
+  {
+   "fieldname": "col_break_creancier",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nom_raison_sociale",
+   "fieldtype": "Data",
+   "label": "Nom / Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "domicile",
+   "fieldtype": "Data",
+   "label": "Domicile / Banque",
+   "read_only": 1
+  },
+  {
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Compte",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "label": "Type de Compte",
+   "options": "Banque\nCCP",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:in_list(['Liste Personnes','Divers Banque','Divers CCP'], doc.type_creancier)",
+   "fieldname": "section_liste_personnes",
+   "fieldtype": "Section Break",
+   "label": "Liste des B\u00e9n\u00e9ficiaires"
+  },
+  {
+   "depends_on": "eval:doc.type_source=='Fiche Depense' && doc.fiche_depense",
+   "fieldname": "btn_choisir_beneficiaires",
+   "fieldtype": "Button",
+   "label": "Choisir b\u00e9n\u00e9ficiaires"
+  },
+  {
+   "fieldname": "liste_personnes",
+   "fieldtype": "Table",
+   "label": "B\u00e9n\u00e9ficiaires",
+   "options": "Mandat Personne Element"
+  },
+  {
+   "fieldname": "section_montant",
+   "fieldtype": "Section Break",
+   "label": "Montant"
+  },
+  {
+   "bold": 1,
+   "fieldname": "montant_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Total (DA)",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_montant",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_lettres",
+   "fieldtype": "Small Text",
+   "label": "Montant en Lettres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_objet",
+   "fieldtype": "Section Break",
+   "label": "Objet"
+  },
+  {
+   "fieldname": "objet_paiement",
+   "fieldtype": "Small Text",
+   "label": "Objet du Paiement",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.factures_concernees",
+   "fieldname": "factures_concernees",
+   "fieldtype": "Small Text",
+   "label": "Factures Concern\u00e9es",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_paiement",
+   "fieldtype": "Section Break",
+   "label": "Mode de Paiement"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "mode_paiement",
+   "fieldtype": "Select",
+   "label": "Mode de Paiement",
+   "options": "Tr\u00e9sor\nCh\u00e8que Postal\nCaisse"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:in_list(['Ch\u00e8que Postal','Caisse'], doc.mode_paiement)",
+   "fieldname": "numero_cheque",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Ch\u00e8que"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:in_list(['Ch\u00e8que Postal','Caisse'], doc.mode_paiement)",
+   "fieldname": "date_cheque",
+   "fieldtype": "Date",
+   "label": "Date Ch\u00e8que"
+  },
+  {
+   "fieldname": "col_break_paiement",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_paiement",
+   "fieldtype": "Date",
+   "label": "Date de Paiement"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_partie_comptable",
+   "fieldtype": "Section Break",
+   "label": "Partie R\u00e9serv\u00e9e Comptable"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "numero_admission",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Admission"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_admission",
+   "fieldtype": "Date",
+   "label": "Date Admission"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "numero_jc",
+   "fieldtype": "Data",
+   "label": "N\u00b0 JC"
+  },
+  {
+   "fieldname": "col_break_comptable",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "folio",
+   "fieldtype": "Data",
+   "label": "Folio"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "mois",
+   "fieldtype": "Data",
+   "label": "Mois"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "ordre",
+   "fieldtype": "Data",
+   "label": "Ordre"
+  },
+  {
+   "fieldname": "section_statut",
+   "fieldtype": "Section Break",
+   "label": "Statut"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "En Attente",
+   "fieldname": "status_admission",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut Admission",
+   "options": "En Attente\nEnvoy\u00e9 Comptable\nAdmis\nRejet\u00e9\nPay\u00e9\nAnnul\u00e9 D\u00e9finitif"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:(doc.status_admission=='Rejet\u00e9') || (doc.status_admission=='Annul\u00e9 D\u00e9finitif')",
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "label": "Motif de Rejet"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "nb_rejets",
+   "fieldtype": "Int",
+   "label": "Nombre de Rejets",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "collapsible": 1,
+   "depends_on": "eval:doc.nb_rejets > 0",
+   "fieldname": "section_rejets",
+   "fieldtype": "Section Break",
+   "label": "Historique des Rejets"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "historique_rejets",
+   "fieldtype": "Table",
+   "label": "Historique des Rejets",
+   "options": "Rejet Mandat Element",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "pieces_jointes",
+   "fieldtype": "Table",
+   "label": "Pi\u00e8ces Jointes",
+   "options": "Pieces Jointes Mandat"
+  },
+  {
+   "fieldname": "section_pieces_jointes",
+   "fieldtype": "Section Break",
+   "label": "Liste des pi\u00e8ces jointes"
+  },
+  {
+   "fieldname": "column_break_axgo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Mandat Paiement",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "code_mode_paiement",
+   "fieldtype": "Int",
+   "label": "Code Mode Paiement"
+  },
+  {
+   "fieldname": "frais_mission_apriori",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Frais Mission \u00e0 priori",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque' && (doc.type_creancier == 'Fournisseur Unique' || doc.type_creancier == 'Liste Personnes')",
+   "fieldname": "numero_agence",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Agence"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-06-20 20:40:53.358507",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Mandat Paiement",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

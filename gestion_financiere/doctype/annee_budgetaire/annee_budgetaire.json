@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{annee}",
+ "creation": "2026-01-13 13:43:42.593194",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "ann\u00e9e_budgetaire_section",
+  "annee",
+  "date_ouverture",
+  "date_cloture",
+  "active",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "ann\u00e9e_budgetaire_section",
+   "fieldtype": "Section Break",
+   "label": "Ann\u00e9e Budgetaire"
+  },
+  {
+   "fieldname": "annee",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Ann\u00e9e",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_ouverture",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date d'ouverture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_cloture",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date de cl\u00f4ture ",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "status",
+   "options": "En pr\u00e9paration\nEn cours\nCl\u00f4tur\u00e9e"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-17 13:59:43.012072",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Annee Budgetaire",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

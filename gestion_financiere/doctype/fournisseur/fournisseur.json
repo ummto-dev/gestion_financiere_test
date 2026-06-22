@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "FOURN-.#####",
+ "creation": "2026-01-21 12:15:32.945513",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_cfru",
+  "nom_prenom",
+  "raison_sociale",
+  "activite",
+  "adresse",
+  "n_rc",
+  "nif",
+  "article_imposition",
+  "nis",
+  "type_compte",
+  "banque",
+  "numero_agence",
+  "numero_compte",
+  "rib",
+  "telephone",
+  "email"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_cfru",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Raison Sociale",
+   "reqd": 1
+  },
+  {
+   "fieldname": "activite",
+   "fieldtype": "Data",
+   "label": "Activit\u00e9"
+  },
+  {
+   "fieldname": "adresse",
+   "fieldtype": "Small Text",
+   "label": "Adresse"
+  },
+  {
+   "fieldname": "n_rc",
+   "fieldtype": "Data",
+   "label": "RC"
+  },
+  {
+   "fieldname": "nif",
+   "fieldtype": "Data",
+   "label": "NIF"
+  },
+  {
+   "fieldname": "article_imposition",
+   "fieldtype": "Data",
+   "label": "AI"
+  },
+  {
+   "fieldname": "nis",
+   "fieldtype": "Data",
+   "label": "NIS"
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque'",
+   "fieldname": "banque",
+   "fieldtype": "Data",
+   "label": "Banque"
+  },
+  {
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "label": "Nom et pr\u00e9nom"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Phone",
+   "label": "t\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "Numero compte",
+   "length": 20
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "label": "Type compte",
+   "options": "Banque\nCCP"
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque'",
+   "fieldname": "numero_agence",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Agence"
+  },
+  {
+   "fieldname": "rib",
+   "fieldtype": "Int",
+   "label": "RIB",
+   "length": 20
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-14 13:24:42.706155",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Fournisseur",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "raison_sociale"
+}

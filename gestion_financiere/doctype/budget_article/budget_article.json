@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{ord}-{article}",
+ "creation": "2026-01-13 14:36:50.534960",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cost_center",
+  "ord",
+  "annee_budgetaire",
+  "budget_chapitre",
+  "chapitre",
+  "article",
+  "code_article",
+  "intitule_article",
+  "code_partition",
+  "intitule_partition",
+  "montant",
+  "type",
+  "has_partition"
+ ],
+ "fields": [
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article",
+   "options": "Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget_chapitre.chapitre",
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Chapitre",
+   "options": "Chapitre",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Allou\u00e9 (DA)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire"
+  },
+  {
+   "fetch_from": "article.code_partie",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Code Partition",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_partie",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "read_only": 1
+  },
+  {
+   "fieldname": "budget_chapitre",
+   "fieldtype": "Link",
+   "label": "Budget Chapitre",
+   "options": "Budget Chapitre"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Facult\u00e9",
+   "options": "Cost Center"
+  },
+  {
+   "fetch_from": "cost_center.cost_center_number",
+   "fieldname": "ord",
+   "fieldtype": "Data",
+   "label": "code ordonnateur"
+  },
+  {
+   "fetch_from": "article.type",
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type Article",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "article.has_partition",
+   "fieldname": "has_partition",
+   "fieldtype": "Check",
+   "label": "a des partitions",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-21 09:27:06.617522",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Budget Article",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

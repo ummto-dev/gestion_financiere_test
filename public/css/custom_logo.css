@@ -1,0 +1,24 @@
+/* cacher le logo original ERPNext */
+.navbar-brand .app-logo {
+    display: none !important;
+}
+
+/* nouveau logo personnalisé */
+.navbar-brand.navbar-home {
+    background-image: url("/assets/gestion_financiere/images/ummto-logo.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    width: 150px;
+    height: 50px;
+    display: block;
+}
+
+/* version responsive */
+@media (max-width: 768px) {
+    .navbar-brand.navbar-home {
+        width: 120px;
+        height: 40px;
+        background-position: center center;
+    }
+}

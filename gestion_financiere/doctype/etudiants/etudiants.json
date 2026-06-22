@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:ETU-{code_ordonnateur}-{matricule}",
+ "creation": "2026-01-21 12:46:41.845252",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_v8yq",
+  "faculte",
+  "matricule",
+  "nom_prenom",
+  "date_naissance",
+  "departement",
+  "niveau_filiere",
+  "type_compte",
+  "banque",
+  "numero_agence",
+  "numero_compte",
+  "email",
+  "telephone",
+  "code_ordonnateur"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_v8yq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "matricule",
+   "fieldtype": "Data",
+   "label": "Matricule"
+  },
+  {
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "label": "Nom et Pr\u00e9nom"
+  },
+  {
+   "fieldname": "date_naissance",
+   "fieldtype": "Date",
+   "label": "Date de naissance"
+  },
+  {
+   "fieldname": "departement",
+   "fieldtype": "Select",
+   "label": "D\u00e9partement",
+   "options": "Biochimie et microbiologie\nSciences Alimentaires\nG\u00e9ologie\nBiologie\nAgronomie\nEcologie"
+  },
+  {
+   "fieldname": "niveau_filiere",
+   "fieldtype": "Data",
+   "label": "Niveau Filiere"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Phone",
+   "label": "T\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "faculte",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Facult\u00e9",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "Numero compte"
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "label": "type Compte",
+   "options": "Banque\nCCP"
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque'",
+   "fieldname": "banque",
+   "fieldtype": "Data",
+   "label": "Banque"
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque'",
+   "fieldname": "numero_agence",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Agence"
+  },
+  {
+   "fetch_from": "faculte.cost_center_number",
+   "fieldname": "code_ordonnateur",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Code ordonnateur",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-18 14:48:00.585011",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Etudiants",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

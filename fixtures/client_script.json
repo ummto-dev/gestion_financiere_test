@@ -1,0 +1,134 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Fiche Transfert Credit",
+  "enabled": 1,
+  "modified": "2026-04-12 10:48:36.657410",
+  "module": "Gestion Financiere",
+  "name": "mouvement_client",
+  "script": "frappe.listview_settings['Fiche Transfert Credit'] = {\r\n    onload(listview) {\r\n\r\n        async function print_selected() {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Veuillez sélectionner un mandat à imprimer.'));\r\n                return;\r\n            }\r\n\r\n            if (selected.length > 1) {\r\n                frappe.msgprint(__('Vous devez sélectionner un seul un mandat.'));\r\n                return;\r\n            }\r\n\r\n            const doc = selected[0];\r\n\r\n            // Format fixe \"Mondat\"\r\n            const print_format = 'movement credit';\r\n\r\n            // Générer l’URL pour l’impression\r\n            const url = frappe.urllib.get_full_url(\r\n                `/printview?doctype=Fiche Transfert Credit` +\r\n                `&name=${encodeURIComponent(doc.name)}` +\r\n                `&format=${encodeURIComponent(print_format)}` +\r\n                `&no_letterhead=0`\r\n            );\r\n\r\n            // Ouvrir l’aperçu d’impression dans une nouvelle fenêtre\r\n            const w = window.open(url, '_blank');\r\n\r\n            if (w) {\r\n                w.onload = () => w.print();\r\n            } else {\r\n                frappe.msgprint(__('Popup bloquée pour {0}', [doc.name]));\r\n            }\r\n        }\r\n\r\n        // Ajouter le bouton d’impression\r\n        listview.page.add_inner_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer',\r\n            () => { print_selected(); }\r\n        );\r\n\r\n        // Style du bouton\r\n        const print_button = listview.page.wrapper.find('.dropdown-toggle:contains(\"Imprimer\")');\r\n\r\n        if (print_button.length) {\r\n            print_button.css({\r\n                'background-color': '#007bff',\r\n                'color': 'white',\r\n                'border-color': '#007bff'\r\n            });\r\n        }\r\n    }\r\n};\r\n",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Fiche Budgetaire",
+  "enabled": 1,
+  "modified": "2026-05-06 12:03:17.678732",
+  "module": "Gestion Financiere",
+  "name": "imprimer_fiche",
+  "script": "frappe.ui.form.on('Fiche Budgetaire', {\r\n\r\n    refresh: function(frm) {\r\n\r\n        if (!frm.doc.name || !frm.doc.type_fiche) return;\r\n\r\n        const formats = {\r\n            'Économie': 'fiche economie',\r\n            'Dépense': 'fiche depense',\r\n            'Régularisation': 'fiche regularisation',\r\n            'Provision': 'Fiche Engagement'\r\n        };\r\n\r\n        const print_format = formats[frm.doc.type_fiche];\r\n\r\n        if (!print_format) return;\r\n\r\n        // Ajouter bouton\r\n        let btn = frm.add_custom_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer',\r\n            function () {\r\n\r\n                const url = frappe.urllib.get_full_url(\r\n                    `/printview?doctype=Fiche%20Budgetaire` +\r\n                    `&name=${encodeURIComponent(frm.doc.name)}` +\r\n                    `&format=${encodeURIComponent(print_format)}` +\r\n                    `&no_letterhead=0`\r\n                );\r\n\r\n                const w = window.open(url, '_blank');\r\n\r\n                if (w) {\r\n                    w.onload = () => w.print();\r\n                } else {\r\n                    frappe.msgprint(__('Popup bloquée'));\r\n                }\r\n            }\r\n        );\r\n\r\n        // 🎨 Style noir\r\n        $(btn).css({\r\n            'background-color': 'black',\r\n            'color': 'white',\r\n            'border-color': 'black'\r\n        });\r\n\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Depense Interne",
+  "enabled": 1,
+  "modified": "2026-04-16 09:17:33.995365",
+  "module": "Gestion Financiere",
+  "name": "imprimer_depense_interne",
+  "script": "frappe.ui.form.on('Depense Interne', {\r\n\r\n    refresh: function(frm) {\r\n\r\n    \r\n\r\n        const formats = {\r\n    \r\n            'Dépense': 'fiche depense_interne',\r\n            \r\n        };\r\n\r\n        const print_format = 'fiche depense_interne';\r\n\r\n        if (!print_format) return;\r\n\r\n        // Ajouter bouton\r\n        let btn = frm.add_custom_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer',\r\n            function () {\r\n\r\n                const url = frappe.urllib.get_full_url(\r\n                    `/printview?doctype=Depense Interne` +\r\n                    `&name=${encodeURIComponent(frm.doc.name)}` +\r\n                    `&format=${encodeURIComponent(print_format)}` +\r\n                    `&no_letterhead=0`\r\n                );\r\n\r\n                const w = window.open(url, '_blank');\r\n\r\n                if (w) {\r\n                    w.onload = () => w.print();\r\n                } else {\r\n                    frappe.msgprint(__('Popup bloquée'));\r\n                }\r\n            }\r\n        );\r\n\r\n        // 🎨 Style noir\r\n        $(btn).css({\r\n            'background-color': 'black',\r\n            'color': 'white',\r\n            'border-color': 'black'\r\n        });\r\n\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Fiche Transfert Credit",
+  "enabled": 1,
+  "modified": "2026-04-16 09:52:26.464521",
+  "module": "Gestion Financiere",
+  "name": "imprimer_mouvement_credit",
+  "script": "frappe.ui.form.on('Fiche Transfert Credit', {\r\n\r\n    refresh: function(frm) {\r\n\r\n    \r\n\r\n       \r\n\r\n        const print_format = 'movement credit';\r\n\r\n        if (!print_format) return;\r\n\r\n        // Ajouter bouton\r\n        let btn = frm.add_custom_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer',\r\n            function () {\r\n\r\n                const url = frappe.urllib.get_full_url(\r\n                    `/printview?doctype=Fiche Transfert Credit` +\r\n                    `&name=${encodeURIComponent(frm.doc.name)}` +\r\n                    `&format=${encodeURIComponent(print_format)}` +\r\n                    `&no_letterhead=0`\r\n                );\r\n\r\n                const w = window.open(url, '_blank');\r\n\r\n                if (w) {\r\n                    w.onload = () => w.print();\r\n                } else {\r\n                    frappe.msgprint(__('Popup bloquée'));\r\n                }\r\n            }\r\n        );\r\n\r\n        // 🎨 Style noir\r\n        $(btn).css({\r\n            'background-color': 'black',\r\n            'color': 'white',\r\n            'border-color': 'black'\r\n        });\r\n\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Fiche Budgetaire",
+  "enabled": 1,
+  "modified": "2026-05-06 12:03:02.796391",
+  "module": "Gestion Financiere",
+  "name": "print_a3",
+  "script": "frappe.listview_settings['Fiche Budgetaire'] = {\r\n    onload(listview) {\r\n\r\n        async function print_selected() {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Please select at least one Budget Article to print.'));\r\n                return;\r\n            }\r\n\r\n            if (selected.length > 1) {\r\n                frappe.msgprint(__('You should select only one Budget Article to print.'));\r\n                return;\r\n            }\r\n\r\n            const doc = selected[0];\r\n\r\n            // Determine the print format based on the value of type_fiche\r\n            let print_format = '';\r\n            if (doc.type_fiche === 'Économie') {\r\n                print_format = 'fiche economie';\r\n            } else if (doc.type_fiche === 'Dépense') {\r\n                print_format = 'fiche depense';\r\n            } else if (doc.type_fiche === 'Régularisation') {\r\n                print_format = 'fiche regularisation';\r\n            } else if (doc.type_fiche === 'Provision') {\r\n                print_format = 'Fiche Engagement';\r\n            }\r\n            else {\r\n                frappe.msgprint(__('Unknown type_fiche, cannot determine print format.'));\r\n                return;\r\n            }\r\n\r\n            // Generate the URL for the print view\r\n            const url = frappe.urllib.get_full_url(\r\n                `/printview?doctype=Fiche%20Budgetaire` +\r\n                `&name=${encodeURIComponent(doc.name)}` +\r\n                `&format=${encodeURIComponent(print_format)}` +\r\n                `&no_letterhead=0`\r\n            );\r\n\r\n            // Open the print preview in a new window\r\n            const w = window.open(url, '_blank');\r\n\r\n            if (w) {\r\n                w.onload = () => w.print();\r\n            } else {\r\n                frappe.msgprint(__('Popup blocked for {0}', [doc.name]));\r\n            }\r\n        }\r\n\r\n        // Add a single button for printing\r\n        listview.page.add_inner_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer fiche',\r\n            () => { print_selected(); }\r\n        );\r\n\r\n        // Customize the print button style if needed\r\n        const print_button = listview.page.wrapper.find('.dropdown-toggle:contains(\"Print\")');\r\n\r\n        if (print_button.length) {\r\n            print_button.css({\r\n                'background-color': '#007bff',\r\n                'color': 'white',\r\n                'border-color': '#007bff'\r\n            });\r\n        }\r\n\r\n    }\r\n};",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Mandat Paiement",
+  "enabled": 1,
+  "modified": "2026-04-25 09:10:42.061236",
+  "module": "Gestion Financiere",
+  "name": "Mandat_button",
+  "script": "frappe.listview_settings['Mandat Paiement'] = {\r\n    onload(listview) {\r\n\r\n        async function print_selected() {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Veuillez sélectionner une Fiche à imprimer.'));\r\n                return;\r\n            }\r\n\r\n            if (selected.length > 1) {\r\n                frappe.msgprint(__('Vous devez sélectionner une seule Fiche.'));\r\n                return;\r\n            }\r\n\r\n            const doc = selected[0];\r\n\r\n            // Format fixe \"Mondat\"\r\n            const print_format = 'Mondat';\r\n\r\n            // Générer l’URL pour l’impression\r\n            const url = frappe.urllib.get_full_url(\r\n                `/printview?doctype=Mandat Paiement` +\r\n                `&name=${encodeURIComponent(doc.name)}` +\r\n                `&format=${encodeURIComponent(print_format)}` +\r\n                `&no_letterhead=0`\r\n            );\r\n\r\n            // Ouvrir l’aperçu d’impression dans une nouvelle fenêtre\r\n            const w = window.open(url, '_blank');\r\n\r\n            if (w) {\r\n                w.onload = () => w.print();\r\n            } else {\r\n                frappe.msgprint(__('Popup bloquée pour {0}', [doc.name]));\r\n            }\r\n        }\r\n\r\n        // Ajouter le bouton d’impression\r\n        listview.page.add_inner_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer mandat',\r\n            () => { print_selected(); }\r\n        );\r\n\r\n        // Style du bouton\r\n        const print_button = listview.page.wrapper.find('.dropdown-toggle:contains(\"Imprimer\")');\r\n\r\n        if (print_button.length) {\r\n            print_button.css({\r\n                'background-color': '#007bff',\r\n                'color': 'white',\r\n                'border-color': '#007bff'\r\n            });\r\n        }\r\n    }\r\n};\r\n",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Budget Article",
+  "enabled": 0,
+  "modified": "2026-05-14 15:09:48.335433",
+  "module": "Gestion Financiere",
+  "name": "bouton print",
+  "script": "frappe.listview_settings['Budget Article'] = {\r\n    onload(listview) {\r\n\r\n        // Async function to print selected documents\r\n        async function print_selected(print_format) {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Please select at least one Budget Article to print.'));\r\n                return;\r\n            }\r\n\r\n            // Loop through selected docs sequentially to avoid popup blocking\r\n            for (const doc of selected) {\r\n                const url = frappe.urllib.get_full_url(\r\n                    `/printview?doctype=Budget Article` +\r\n                    `&name=${encodeURIComponent(doc.name)}` +\r\n                    `&format=${encodeURIComponent(print_format)}` +\r\n                    `&no_letterhead=0`\r\n                );\r\n\r\n                const w = window.open(url, '_blank');\r\n\r\n                if (w) {\r\n                    // Trigger print after the window loads\r\n                    w.onload = () => w.print();\r\n\r\n                    // Optional: small delay to ensure print dialog triggers properly\r\n                    await new Promise(r => setTimeout(r, 500));\r\n                } else {\r\n                    frappe.msgprint(__('Popup blocked for {0}', [doc.name]));\r\n                }\r\n            }\r\n        }\r\n\r\n        // Add dropdown buttons under \"Print\"\r\n        listview.page.add_inner_button(__('Fiche Economie'), () => {\r\n            print_selected('Fiche Economie');\r\n        }, __('Print'));\r\n\r\n        listview.page.add_inner_button(__('Fiche Regularisation'), () => {\r\n            print_selected('Fiche Regularisation');\r\n        }, __('Print'));\r\n\r\n    }\r\n};",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Faculte",
+  "enabled": 1,
+  "modified": "2026-01-14 10:19:25.977981",
+  "module": null,
+  "name": "ordonateur+initiales",
+  "script": "frappe.ui.form.on('Faculte', {\r\n    intitule_faculte(frm) {\r\n        const value = frm.doc.intitule_faculte || '';\r\n\r\n        // extraire UNIQUEMENT les lettres majuscules (accentuées incluses)\r\n        const initials = value.match(/[A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ]/g)?.join('') || '';\r\n\r\n        frm.set_value('initiales_faculte', initials);\r\n    }\r\n});\r\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Annee Budgetaire",
+  "enabled": 1,
+  "modified": "2026-01-20 10:38:12.612294",
+  "module": null,
+  "name": "Date Picker Année Budgetaire",
+  "script": "frappe.ui.form.on('Annee Budgetaire', {\r\n    onload: function(frm) {\r\n        // Générer la liste des années de 2026 à 2100\r\n        let years = [];\r\n        for (let i = 2026; i <= 2100; i++) {\r\n            years.push(i.toString());\r\n        }\r\n        frm.set_df_property('annee', 'options', years.join('\\n'));\r\n    },\r\n\r\n    date_ouverture: function(frm) {\r\n        if (frm.doc.date_ouverture) {\r\n            // Empêche de choisir une date de clôture avant la date d'ouverture\r\n            frm.set_df_property('date_cloture', 'min_date', frm.doc.date_ouverture);\r\n        }\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Annee Budgetaire', {\r\n    date_ouverture: function(frm) {\r\n        if (frm.doc.date_ouverture) {\r\n            // Appliquer la borne minimale directement sur la définition du champ\r\n            frm.fields_dict['date_cloture'].df.min_date = frm.doc.date_ouverture;\r\n            // Rafraîchir le champ pour que le Date Picker recharge la contrainte\r\n            frm.fields_dict['date_cloture'].refresh();\r\n        }\r\n    }\r\n});\r\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Depense Interne",
+  "enabled": 1,
+  "modified": "2026-04-08 13:37:51.251999",
+  "module": null,
+  "name": "depense_interne_bouton",
+  "script": "frappe.listview_settings['Depense Interne'] = {\r\n    onload(listview) {\r\n\r\n        async function print_selected() {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Veuillez sélectionner une Fiche Budgetaire à imprimer.'));\r\n                return;\r\n            }\r\n\r\n            if (selected.length > 1) {\r\n                frappe.msgprint(__('Vous devez sélectionner une seule Fiche Budgetaire.'));\r\n                return;\r\n            }\r\n\r\n            const doc = selected[0];\r\n\r\n            // Format fixe \"Mondat\"\r\n            const print_format = 'fiche depense_interne';\r\n\r\n            // Générer l’URL pour l’impression\r\n            const url = frappe.urllib.get_full_url(\r\n                `/printview?doctype=Depense Interne` +\r\n                `&name=${encodeURIComponent(doc.name)}` +\r\n                `&format=${encodeURIComponent(print_format)}` +\r\n                `&no_letterhead=0`\r\n            );\r\n\r\n            // Ouvrir l’aperçu d’impression dans une nouvelle fenêtre\r\n            const w = window.open(url, '_blank');\r\n\r\n            if (w) {\r\n                w.onload = () => w.print();\r\n            } else {\r\n                frappe.msgprint(__('Popup bloquée pour {0}', [doc.name]));\r\n            }\r\n        }\r\n\r\n        // Ajouter le bouton d’impression\r\n        listview.page.add_inner_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer',\r\n            () => { print_selected(); }\r\n        );\r\n\r\n        // Style du bouton\r\n        const print_button = listview.page.wrapper.find('.dropdown-toggle:contains(\"Imprimer\")');\r\n\r\n        if (print_button.length) {\r\n            print_button.css({\r\n                'background-color': '#007bff',\r\n                'color': 'white',\r\n                'border-color': '#007bff'\r\n            });\r\n        }\r\n    }\r\n};\r\n",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Bon Commande",
+  "enabled": 1,
+  "modified": "2026-05-14 14:56:05.868408",
+  "module": "Gestion Financiere",
+  "name": "boutton_bon_commande",
+  "script": "frappe.listview_settings['Bon Commande'] = {\r\n    onload(listview) {\r\n\r\n        async function print_selected() {\r\n            const selected = listview.get_checked_items();\r\n\r\n            if (!selected.length) {\r\n                frappe.msgprint(__('Veuillez sélectionner un bon de commande.'));\r\n                return;\r\n            }\r\n\r\n            if (selected.length > 1) {\r\n                frappe.msgprint(__('Vous devez sélectionner un seul bon de commande.'));\r\n                return;\r\n            }\r\n\r\n            const doc = selected[0];\r\n\r\n            // Format fixe \"Mondat\"\r\n            const print_format = 'bon_commande_sm';\r\n\r\n            // Générer l’URL pour l’impression\r\n            const url = frappe.urllib.get_full_url(\r\n                `/printview?doctype=Bon Commande` +\r\n                `&name=${encodeURIComponent(doc.name)}` +\r\n                `&format=${encodeURIComponent(print_format)}` +\r\n                `&no_letterhead=0`\r\n            );\r\n\r\n            // Ouvrir l’aperçu d’impression dans une nouvelle fenêtre\r\n            const w = window.open(url, '_blank');\r\n\r\n            if (w) {\r\n                w.onload = () => w.print();\r\n            } else {\r\n                frappe.msgprint(__('Popup bloquée pour {0}', [doc.name]));\r\n            }\r\n        }\r\n\r\n        // Ajouter le bouton d’impression\r\n        listview.page.add_inner_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer Bon de commande',\r\n            () => { print_selected(); }\r\n        );\r\n\r\n        // Style du bouton\r\n        const print_button = listview.page.wrapper.find('.dropdown-toggle:contains(\"Imprimer\")');\r\n\r\n        if (print_button.length) {\r\n            print_button.css({\r\n                'background-color': '#007bff',\r\n                'color': 'white',\r\n                'border-color': '#007bff'\r\n            });\r\n        }\r\n    }\r\n};\r\n",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Bon Commande",
+  "enabled": 1,
+  "modified": "2026-05-17 08:36:06.433247",
+  "module": "Gestion Financiere",
+  "name": "imprimer_commande",
+  "script": "frappe.ui.form.on('Bon Commande', {\r\n\r\n    refresh: function(frm) {\r\n\r\n    \r\n\r\n        const formats = {\r\n    \r\n            'bon Commande': 'bon_commande_sm',\r\n            \r\n        };\r\n\r\n        const print_format = 'bon_commande_sm';\r\n\r\n        if (!print_format) return;\r\n\r\n        // Ajouter bouton\r\n        let btn = frm.add_custom_button(\r\n            '<i class=\"fa fa-print\"></i> Imprimer bon commande',\r\n            function () {\r\n\r\n                const url = frappe.urllib.get_full_url(\r\n                    `/printview?doctype=Bon Commande` +\r\n                    `&name=${encodeURIComponent(frm.doc.name)}` +\r\n                    `&format=${encodeURIComponent(print_format)}` +\r\n                    `&no_letterhead=0`\r\n                );\r\n\r\n                const w = window.open(url, '_blank');\r\n\r\n                if (w) {\r\n                    w.onload = () => w.print();\r\n                } else {\r\n                    frappe.msgprint(__('Popup bloquée'));\r\n                }\r\n            }\r\n        );\r\n\r\n        // 🎨 Style noir\r\n        $(btn).css({\r\n            'background-color': 'black',\r\n            'color': 'white',\r\n            'border-color': 'black'\r\n        });\r\n\r\n    }\r\n});",
+  "view": "Form"
+ }
+]

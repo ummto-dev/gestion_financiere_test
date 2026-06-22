@@ -1,0 +1,349 @@
+{
+ "actions": [],
+ "autoname": "format:CONV-{budget_global}-{#####}",
+ "creation": "2025-02-20 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "numero_convention",
+  "date_convention",
+  "annee_budgetaire",
+  "col_break_entete",
+  "type_convention",
+  "consultation_numero",
+  "budget_global",
+  "section_parties",
+  "fournisseur",
+  "raison_sociale",
+  "col_break_parties",
+  "adresse_fournisseur",
+  "numero_compte",
+  "section_objet",
+  "objet_convention",
+  "section_montant",
+  "montant_convention",
+  "col_break_montant",
+  "montant_lettres",
+  "section_imputation",
+  "titre",
+  "chapitre",
+  "intitule_chapitre",
+  "col_break_imp",
+  "article",
+  "code_article",
+  "intitule_article",
+  "col_break_imp2",
+  "partition",
+  "intitule_partition",
+  "section_validation",
+  "date_signature",
+  "visa_cf_numero",
+  "date_visa_cf",
+  "col_break_validation",
+  "status",
+  "motif_rejet",
+  "section_execution",
+  "fiche_depense",
+  "situation_paiement",
+  "col_break_exec",
+  "montant_paye",
+  "reste_a_payer"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "bold": 1,
+   "fieldname": "numero_convention",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Convention",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_convention",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Convention",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type_convention",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type de Convention",
+   "options": "\nAcquisition\nPrestation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consultation_numero",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Consultation"
+  },
+  {
+   "fieldname": "section_parties",
+   "fieldtype": "Section Break",
+   "label": "Parties Contractantes"
+  },
+  {
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Cocontractant (Fournisseur/Prestataire)",
+   "options": "Fournisseur",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "fournisseur.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_parties",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "fournisseur.adresse",
+   "fieldname": "adresse_fournisseur",
+   "fieldtype": "Data",
+   "label": "Adresse",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fournisseur.numero_compte",
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Compte",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_objet",
+   "fieldtype": "Section Break",
+   "label": "Objet"
+  },
+  {
+   "fieldname": "objet_convention",
+   "fieldtype": "Small Text",
+   "label": "Objet de la Convention",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_montant",
+   "fieldtype": "Section Break",
+   "label": "Montant"
+  },
+  {
+   "bold": 1,
+   "fieldname": "montant_convention",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Convention (DA)",
+   "precision": "2",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_montant",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_lettres",
+   "fieldtype": "Small Text",
+   "label": "Montant en Lettres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_imputation",
+   "fieldtype": "Section Break",
+   "label": "Imputation Budg\u00e9taire"
+  },
+  {
+   "fieldname": "titre",
+   "fieldtype": "Link",
+   "label": "Titre",
+   "options": "Titre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "col_break_imp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "partition",
+   "fieldtype": "Data",
+   "label": "Partition"
+  },
+  {
+   "fieldname": "section_validation",
+   "fieldtype": "Section Break",
+   "label": "Validation"
+  },
+  {
+   "fieldname": "date_signature",
+   "fieldtype": "Date",
+   "label": "Date de Signature"
+  },
+  {
+   "fieldname": "visa_cf_numero",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Visa CF"
+  },
+  {
+   "fieldname": "date_visa_cf",
+   "fieldtype": "Date",
+   "label": "Date Visa CF"
+  },
+  {
+   "fieldname": "col_break_validation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Brouillon",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut",
+   "options": "Brouillon\nSign\u00e9\nEnvoy\u00e9 CF\nVis\u00e9 CF\nRejet\u00e9 CF\nRejet\u00e9 D\u00e9finitif\nEn Ex\u00e9cution\nSold\u00e9"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_execution",
+   "fieldtype": "Section Break",
+   "label": "Suivi d'Ex\u00e9cution"
+  },
+  {
+   "fieldname": "fiche_depense",
+   "fieldtype": "Link",
+   "label": "Fiche D\u00e9pense",
+   "options": "Fiche Budgetaire"
+  },
+  {
+   "fieldname": "situation_paiement",
+   "fieldtype": "Link",
+   "label": "Situation de Paiement",
+   "options": "Situation Paiement"
+  },
+  {
+   "fieldname": "col_break_exec",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_paye",
+   "fieldtype": "Currency",
+   "label": "Montant Pay\u00e9 (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reste_a_payer",
+   "fieldtype": "Currency",
+   "label": "Reste \u00e0 Payer (DA)",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000
+  },
+  {
+   "depends_on": "\"eval:doc.status == 'Rejet\u00e9 Cf'\"",
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "label": "Motif Rejet"
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "length": 1000
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 16:07:07.667281",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Convention",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -1,0 +1,266 @@
+{
+ "actions": [],
+ "autoname": "format:SIT-{convention}",
+ "creation": "2025-02-19 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_reference",
+  "budget_global",
+  "convention",
+  "fiche_depense",
+  "annee_budgetaire",
+  "chapitre",
+  "column_break_fffh",
+  "article",
+  "intitule_article",
+  "code_partition",
+  "intitule_partition",
+  "section_info",
+  "numero_convention",
+  "date_convention",
+  "col_break_info",
+  "fournisseur",
+  "raison_sociale",
+  "section_objet",
+  "objet_convention",
+  "section_montants",
+  "montant_total_convention",
+  "montant_paye",
+  "col_break_montant",
+  "reste_a_payer",
+  "section_paiements",
+  "paiements",
+  "section_statut",
+  "status",
+  "date_solde",
+  "col_break_statut",
+  "observations"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_reference",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9f\u00e9rence"
+  },
+  {
+   "fieldname": "convention",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Convention",
+   "options": "Convention",
+   "unique": 1
+  },
+  {
+   "fetch_from": "convention.fiche_depense",
+   "fieldname": "fiche_depense",
+   "fieldtype": "Link",
+   "label": "Fiche D\u00e9pense",
+   "options": "Fiche Budgetaire"
+  },
+  {
+   "fetch_from": "convention.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "convention.article",
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Budget Article",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_info",
+   "fieldtype": "Section Break",
+   "label": "Informations Convention"
+  },
+  {
+   "fetch_from": "convention.numero_convention",
+   "fieldname": "numero_convention",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Convention",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "convention.date_convention",
+   "fieldname": "date_convention",
+   "fieldtype": "Date",
+   "label": "Date Convention",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "convention.fournisseur",
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "label": "Fournisseur",
+   "options": "Fournisseur",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "fournisseur.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_objet",
+   "fieldtype": "Section Break",
+   "label": "Objet"
+  },
+  {
+   "fetch_from": "convention.objet_convention",
+   "fieldname": "objet_convention",
+   "fieldtype": "Small Text",
+   "label": "Objet de la Convention",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_montants",
+   "fieldtype": "Section Break",
+   "label": "Montants"
+  },
+  {
+   "bold": 1,
+   "fetch_from": "convention.montant_convention",
+   "fieldname": "montant_total_convention",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Total Convention (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant_paye",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant Pay\u00e9 (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_montant",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "reste_a_payer",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Reste \u00e0 Payer (DA)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_paiements",
+   "fieldtype": "Section Break",
+   "label": "Tableau de Suivi des Paiements"
+  },
+  {
+   "fieldname": "paiements",
+   "fieldtype": "Table",
+   "label": "Paiements",
+   "options": "Paiement Situation Element"
+  },
+  {
+   "fieldname": "section_statut",
+   "fieldtype": "Section Break",
+   "label": "Statut"
+  },
+  {
+   "default": "En Cours",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut",
+   "options": "En Cours\nSold\u00e9",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_solde",
+   "fieldtype": "Date",
+   "label": "Date Solde",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_statut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "observations",
+   "fieldtype": "Small Text",
+   "label": "Observations"
+  },
+  {
+   "fetch_from": "convention.chapitre",
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "label": "Chapitre",
+   "options": "Budget Chapitre"
+  },
+  {
+   "fieldname": "column_break_fffh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article ",
+   "length": 1000
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Code Partition"
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-19 20:31:54.656109",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Situation Paiement",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

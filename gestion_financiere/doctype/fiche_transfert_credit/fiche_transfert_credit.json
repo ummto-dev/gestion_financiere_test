@@ -1,0 +1,356 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TRANS-{chapitre}-{#####}",
+ "creation": "2026-02-16 13:10:01.930947",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "budget_global",
+  "annee_budgetaire",
+  "chapitre",
+  "intitule_chapitre",
+  "column_break_bwic",
+  "date_transfert",
+  "numero_decision",
+  "section_source",
+  "article_source",
+  "type_article_source",
+  "solde_disponible_source",
+  "column_break_mwxw",
+  "intitule_article_source",
+  "partition_source",
+  "intitule_partition_source",
+  "section_destination",
+  "article_destination",
+  "type_article_destination",
+  "column_break_rmxb",
+  "intitule_article_destination",
+  "partition_destination",
+  "intitule_partition_destination",
+  "section_montant",
+  "montant_transfere",
+  "section_justification",
+  "motif_transfert",
+  "reference_decision",
+  "section_validation",
+  "date_signature_doyen",
+  "status",
+  "column_break_klqs",
+  "visa_cf_numero",
+  "date_visa_cf",
+  "section_break_riok",
+  "motif_rejet",
+  "section_execution",
+  "fiche_source",
+  "fiche_destination",
+  "date_execution",
+  "provision_1_visee",
+  "transfert_autorise",
+  "pieces_jointes",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Chapitre",
+   "options": "Budget Chapitre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_transfert",
+   "fieldtype": "Date",
+   "label": "Date transfert"
+  },
+  {
+   "fieldname": "numero_decision",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Numero d\u00e9cision",
+   "reqd": 1
+  },
+  {
+   "fieldname": "article_source",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article source",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article_source.type",
+   "fieldname": "type_article_source",
+   "fieldtype": "Data",
+   "label": "Type article source",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "solde_disponible_source",
+   "fieldtype": "Currency",
+   "label": "Solde disponible source",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "provision_1_visee",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Provision 1 vis\u00e9e",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "transfert_autorise",
+   "fieldtype": "Check",
+   "label": "Transfert autoris\u00e9",
+   "read_only": 1
+  },
+  {
+   "fieldname": "article_destination",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article destination",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article_destination.type",
+   "fieldname": "type_article_destination",
+   "fieldtype": "Data",
+   "label": "Type article destination",
+   "reqd": 1
+  },
+  {
+   "fieldname": "montant_transfere",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant transf\u00e9r\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "motif_transfert",
+   "fieldtype": "Small Text",
+   "label": "Motif transfert",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reference_decision",
+   "fieldtype": "Data",
+   "label": "R\u00e9f\u00e9rence D\u00e9cision"
+  },
+  {
+   "fieldname": "pieces_jointes",
+   "fieldtype": "Data",
+   "label": "Pieces Jointes"
+  },
+  {
+   "fieldname": "visa_cf_numero",
+   "fieldtype": "Data",
+   "label": "Visa CF numero"
+  },
+  {
+   "fieldname": "date_visa_cf",
+   "fieldtype": "Date",
+   "label": "Date Visa CF"
+  },
+  {
+   "default": "Brouillon",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Brouillon\nSign\u00e9 Doyen\nEnvoy\u00e9 CF\nVis\u00e9 CF\nRejet\u00e9\nEx\u00e9cut\u00e9",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiche_source",
+   "fieldtype": "Link",
+   "label": "Fiche Source",
+   "options": "Fiche Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiche_destination",
+   "fieldtype": "Link",
+   "label": "Fiche Destination",
+   "options": "Fiche Budgetaire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_execution",
+   "fieldtype": "Date",
+   "label": "Date execution"
+  },
+  {
+   "fieldname": "date_signature_doyen",
+   "fieldtype": "Date",
+   "label": "Date signature Doyen"
+  },
+  {
+   "fieldname": "section_source",
+   "fieldtype": "Section Break",
+   "label": "Article Source (Qui Donne)"
+  },
+  {
+   "fetch_from": "article_source.code_partition",
+   "fieldname": "partition_source",
+   "fieldtype": "Data",
+   "label": "Partition source",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_destination",
+   "fieldtype": "Section Break",
+   "label": "Articles Destination (Qui Re\u00e7oit)"
+  },
+  {
+   "fetch_from": "article_destination.code_partition",
+   "fieldname": "partition_destination",
+   "fieldtype": "Data",
+   "label": "Partition destination",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_montant",
+   "fieldtype": "Section Break",
+   "label": "Montant"
+  },
+  {
+   "fieldname": "section_justification",
+   "fieldtype": "Section Break",
+   "label": "Justification"
+  },
+  {
+   "fieldname": "section_validation",
+   "fieldtype": "Section Break",
+   "label": "Validation"
+  },
+  {
+   "fieldname": "section_execution",
+   "fieldtype": "Section Break",
+   "label": "Execution"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fiche Transfert Credit",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budgetaire",
+   "options": "Annee Budgetaire"
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_bwic",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_mwxw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article_source.intitule_article",
+   "fieldname": "intitule_article_source",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article_source.intitule_partition",
+   "fieldname": "intitule_partition_source",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_rmxb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article_destination.intitule_article",
+   "fieldname": "intitule_article_destination",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article_destination.intitule_partition",
+   "fieldname": "intitule_partition_destination",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_klqs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  },
+  {
+   "fieldname": "section_break_riok",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:in_list(['Rejet\u00e9', 'Rejet\u00e9 D\u00e9finitif'], doc.status)",
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "label": "Motif Rejet"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-06-21 12:41:32.829706",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Fiche Transfert Credit",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

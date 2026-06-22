@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "creation": "2025-02-19 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "type_personne",
+  "personne",
+  "nom_prenom",
+  "grade",
+  "type_compte",
+  "banque",
+  "numero_compte",
+  "montant",
+  "numero_agence"
+ ],
+ "fields": [
+  {
+   "fieldname": "type_personne",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nEtudiants\nEnseignant\nPersonnel Administratif",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "personne",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Personne",
+   "options": "type_personne",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom et Pr\u00e9nom",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade / Niveau",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type Compte",
+   "options": "\nBanque\nCCP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "N\u00b0 Compte",
+   "read_only": 1
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant (DA)",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "banque",
+   "fieldtype": "Data",
+   "label": "Banque"
+  },
+  {
+   "depends_on": "eval:doc.type_compte == 'Banque'",
+   "fieldname": "numero_agence",
+   "fieldtype": "Int",
+   "label": "N\u00b0 Agence"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-03 09:30:13.801701",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Mandat Personne Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

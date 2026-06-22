@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-16 19:42:26.017919",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "type_personne",
+  "personne",
+  "nom_prenom",
+  "grade",
+  "type_compte",
+  "numero_compte",
+  "montant"
+ ],
+ "fields": [
+  {
+   "fieldname": "type_personne",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type Personne",
+   "options": "Etudiants\nEnseignant\nPersonnel Administratif",
+   "reqd": 1
+  },
+  {
+   "fieldname": "personne",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "personne",
+   "options": "type_personne",
+   "reqd": 1
+  },
+  {
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom et Prenom",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade / Niveau",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "label": "Type Compte",
+   "options": "\nBanque\nCCP",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "numero_compte",
+   "fieldtype": "Data",
+   "label": "Numero compte",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-18 10:49:07.602850",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Beneficiaire Depense Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

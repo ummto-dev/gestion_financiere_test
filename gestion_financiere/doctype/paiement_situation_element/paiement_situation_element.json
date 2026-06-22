@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-16 20:58:05.796678",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "ligne_numero",
+  "mandat_paiement",
+  "numero_mandat",
+  "date_mandat",
+  "ancien_solde",
+  "montant_operation",
+  "reste_solde",
+  "factures_payes"
+ ],
+ "fields": [
+  {
+   "fieldname": "ligne_numero",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Ligne N\u00b0",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mandat_paiement",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Mandat paiement",
+   "options": "Mandat Paiement",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fetch_from": "mandat_paiement.numero_mandat",
+   "fieldname": "numero_mandat",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Numero mandat",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "mandat_paiement.date_mandat",
+   "fieldname": "date_mandat",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date mandat",
+   "read_only": 1
+  },
+  {
+   "fieldname": "ancien_solde",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Ancien Solde",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "mandat_paiement.montant_total",
+   "fieldname": "montant_operation",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Paiement",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reste_solde",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Solde",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "mandat_paiement.factures_concernees",
+   "fieldname": "factures_payes",
+   "fieldtype": "Small Text",
+   "label": "Factures pay\u00e9s",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-08 15:10:39.415376",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Paiement Situation Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

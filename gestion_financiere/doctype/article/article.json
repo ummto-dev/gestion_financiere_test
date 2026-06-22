@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "creation": "2026-01-13 14:26:31.365965",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "article_section",
+  "annee_budgetaire",
+  "chapitre",
+  "code_article",
+  "intitule_article",
+  "type",
+  "has_partition",
+  "code_partie",
+  "intitule_partie"
+ ],
+ "fields": [
+  {
+   "fieldname": "article_section",
+   "fieldtype": "Section Break",
+   "label": "Article"
+  },
+  {
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code Article",
+   "reqd": 1
+  },
+  {
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "reqd": 1
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Chapitre",
+   "options": "Chapitre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "code_partie",
+   "fieldtype": "Data",
+   "label": "Code Partie"
+  },
+  {
+   "fieldname": "intitule_partie",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partie"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "A priori\nA posteriori",
+   "reqd": 1
+  },
+  {
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "has_partition",
+   "fieldtype": "Check",
+   "label": "partition"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-11 08:53:04.830429",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Article",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "code_article",
+ "translated_doctype": 1
+}

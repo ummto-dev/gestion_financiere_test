@@ -1,0 +1,120 @@
+{
+ "doctype": "DocType",
+ "name": "Etat Frais Mission Elements",
+ "editable_grid": 1,
+ "fields": [
+  {
+   "fieldname": "faculte_ref",
+   "fieldtype": "Data",
+   "label": "Faculté Ref",
+   "hidden": 1,
+   "read_only": 1
+  }, 
+  {
+   "fieldname": "personne",
+   "fieldtype": "Dynamic Link",
+   "label": "Personne",
+   "options": "type_personne_doctype",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_personne_doctype",
+   "fieldtype": "Data",
+   "label": "Type Doctype",
+   "hidden": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "nom_prenom",
+   "fieldtype": "Data",
+   "label": "Nom et Prénom",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "grade",
+   "fieldtype": "Data",
+   "label": "Grade / Niveau",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "nature_deplacement",
+   "fieldtype": "Data",
+   "label": "Nature Déplacement"
+  },
+  {
+   "fieldname": "itineraire",
+   "fieldtype": "Data",
+   "label": "Itinéraire"
+  },
+  {
+   "fieldname": "date_depart",
+   "fieldtype": "Date",
+   "label": "Date Départ"
+  },
+  {
+   "fieldname": "date_retour",
+   "fieldtype": "Date",
+   "label": "Date Retour"
+  },
+  {
+   "fieldname": "heure_depart",
+   "fieldtype": "Time",
+   "label": "Heure Départ"
+  },
+  {
+   "fieldname": "heure_retour",
+   "fieldtype": "Time",
+   "label": "Heure Retour"
+  },
+  {
+   "fieldname": "repas_quantite",
+   "fieldtype": "Int",
+   "label": "Nombre Repas"
+  },
+  {
+   "fieldname": "decoucher_quantite",
+   "fieldtype": "Int",
+   "label": "Nombre Découchés"
+  },
+  {
+   "fieldname": "montant_mission",
+   "fieldtype": "Currency",
+   "label": "Montant Mission (DA)",
+   "in_list_view": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_compte",
+   "fieldtype": "Select",
+   "label": "Type Compte",
+   "options": "\nBanque\nCCP",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "compte",
+   "fieldtype": "Data",
+   "label": "N° Compte",
+   "read_only": 1,
+   "in_list_view": 1
+  }
+ ],
+ "actions": [],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-02-23 10:00:59.469491",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

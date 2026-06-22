@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "creation": "2026-03-21 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "numero_rejet",
+  "date_rejet",
+  "motif_rejet",
+  "col_break1",
+  "rejet_definitif",
+  "date_correction",
+  "corrections"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "numero_rejet",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "N\u00b0 Rejet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_rejet",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Rejet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Motif de Rejet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "rejet_definitif",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Rejet D\u00e9finitif",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_correction",
+   "fieldtype": "Date",
+   "label": "Date Correction",
+   "read_only": 1
+  },
+  {
+   "fieldname": "corrections",
+   "fieldtype": "Small Text",
+   "label": "Corrections",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-03-23 16:11:42.087418",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Rejet Mandat Element",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

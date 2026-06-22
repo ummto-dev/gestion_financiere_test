@@ -1,0 +1,43 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-01-21 13:14:47.957785",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_dcuj",
+  "type_document",
+  "n_copies"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_dcuj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "type_document",
+   "fieldtype": "Data",
+   "label": "Type document"
+  },
+  {
+   "fieldname": "n_copies",
+   "fieldtype": "Int",
+   "label": "Nombre de copie"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-01-21 13:18:51.192336",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Pieces Jointes Mandat",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

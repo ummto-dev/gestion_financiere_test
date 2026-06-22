@@ -1,0 +1,801 @@
+{
+ "actions": [],
+ "creation": "2025-01-01 00:00:00",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_entete",
+  "cost_center",
+  "code_ordonnateur",
+  "intitule_ordonnateur",
+  "col_break_entete",
+  "budget_global",
+  "annee_budgetaire",
+  "numero_fiche",
+  "col_break_entete2",
+  "titre",
+  "code_titre",
+  "intitule_titre",
+  "section_type",
+  "type_fiche",
+  "type_article",
+  "col_break_type",
+  "semestre",
+  "is_transfert",
+  "section_transfert",
+  "sens_transfert",
+  "fiche_transfert",
+  "column_break_egtq",
+  "article_contrepartie",
+  "intitule_article_contrepartie",
+  "section_imputation",
+  "chapitre",
+  "code_chapitre",
+  "intitule_chapitre",
+  "col_break_imp",
+  "article",
+  "code_article",
+  "intitule_article",
+  "col_break_imp2",
+  "code_partition",
+  "intitule_partition",
+  "section_depense_apriori",
+  "type_engagement_apriori",
+  "bon_commande",
+  "bc_numero",
+  "bc_date",
+  "bc_montant",
+  "col_break_dep",
+  "convention",
+  "conv_numero",
+  "conv_date",
+  "conv_montant",
+  "reference_convention",
+  "col_break_dep2",
+  "fournisseur",
+  "raison_sociale",
+  "frais_mission_apriori",
+  "section_provision_s1",
+  "provision_s1_reference",
+  "section_provision_reference",
+  "provision_reference",
+  "section_engagement",
+  "nature_engagement",
+  "section_soldes",
+  "ancien_solde",
+  "col_break_solde",
+  "montant_operation",
+  "col_break_solde2",
+  "nouveau_solde",
+  "section_regularisation",
+  "btn_ajouter_depenses",
+  "depenses_regularisees",
+  "total_regularisation",
+  "section_provision_credit",
+  "col_provision",
+  "provision_ancien_solde",
+  "provision_montant",
+  "provision_nouveau_solde",
+  "provision_obs_service",
+  "col_credit",
+  "credit_ancien_solde",
+  "credit_montant",
+  "credit_nouveau_solde",
+  "credit_obs_service",
+  "section_observations",
+  "ref_engagement_obs",
+  "section_validation",
+  "date_signature_doyen",
+  "col_break_val",
+  "visa_cf_numero",
+  "date_visa_cf",
+  "col_break_val2",
+  "status",
+  "section_rejet",
+  "motif_rejet",
+  "section_suivi",
+  "situation_paiement",
+  "section_rejets_hist",
+  "nb_rejets",
+  "historique_rejets",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_entete",
+   "fieldtype": "Section Break",
+   "label": "En-t\u00eate"
+  },
+  {
+   "fetch_from": "cost_center.cost_center_number",
+   "fieldname": "code_ordonnateur",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code Ordonnateur",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "cost_center.cost_center_name",
+   "fieldname": "intitule_ordonnateur",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Ordonnateur",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_entete",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "col_break_entete2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "titre",
+   "fieldtype": "Link",
+   "label": "Titre",
+   "options": "Titre",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "budget_global.annee_budgetaire",
+   "fieldname": "annee_budgetaire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ann\u00e9e Budg\u00e9taire",
+   "options": "Annee Budgetaire",
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "numero_fiche",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "N\u00b0 Fiche",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_type",
+   "fieldtype": "Section Break",
+   "label": "Type de Fiche"
+  },
+  {
+   "bold": 1,
+   "fieldname": "type_fiche",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type de Fiche",
+   "options": "\n\u00c9conomie\nProvision\nD\u00e9pense\nR\u00e9gularisation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "type_article",
+   "fieldtype": "Data",
+   "label": "Type Article",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_type",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:in_list(['Provision','R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "semestre",
+   "fieldtype": "Select",
+   "label": "Semestre",
+   "options": "\nS1\nS2"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_transfert",
+   "fieldtype": "Check",
+   "label": "Transfert de Cr\u00e9dit"
+  },
+  {
+   "depends_on": "eval:doc.is_transfert == 1",
+   "fieldname": "section_transfert",
+   "fieldtype": "Section Break",
+   "label": "Transfert de Cr\u00e9dit"
+  },
+  {
+   "depends_on": "eval:doc.is_transfert == 1",
+   "fieldname": "sens_transfert",
+   "fieldtype": "Select",
+   "label": "Sens du Transfert",
+   "options": "\nCr\u00e9dit Re\u00e7u\nCr\u00e9dit Donn\u00e9"
+  },
+  {
+   "depends_on": "eval:doc.is_transfert == 1",
+   "fieldname": "article_contrepartie",
+   "fieldtype": "Link",
+   "label": "Article Contrepartie",
+   "options": "Budget Article"
+  },
+  {
+   "depends_on": "eval:doc.is_transfert == 1",
+   "fieldname": "fiche_transfert",
+   "fieldtype": "Link",
+   "label": "Fiche Transfert Cr\u00e9dit",
+   "options": "Fiche Transfert Credit"
+  },
+  {
+   "fieldname": "section_imputation",
+   "fieldtype": "Section Break",
+   "label": "Imputation Budg\u00e9taire"
+  },
+  {
+   "fieldname": "chapitre",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Chapitre",
+   "options": "Budget Chapitre",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "chapitre.code",
+   "fieldname": "code_chapitre",
+   "fieldtype": "Data",
+   "label": "Code Chapitre",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "chapitre.intitule",
+   "fieldname": "intitule_chapitre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Chapitre",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "article",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Article",
+   "options": "Budget Article",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "article.intitule_article",
+   "fieldname": "intitule_article",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_imp2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article.intitule_partition",
+   "fieldname": "intitule_partition",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Partition",
+   "length": 1000,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_soldes",
+   "fieldtype": "Section Break",
+   "label": "Mouvements Budg\u00e9taires"
+  },
+  {
+   "default": "0",
+   "fieldname": "ancien_solde",
+   "fieldtype": "Currency",
+   "label": "Ancien Solde (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_solde",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant_operation",
+   "fieldtype": "Currency",
+   "label": "Montant de l'Op\u00e9ration (DA)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "col_break_solde2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nouveau_solde",
+   "fieldtype": "Currency",
+   "label": "Nouveau Solde (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_engagement",
+   "fieldtype": "Section Break",
+   "label": "Nature de l'Engagement"
+  },
+  {
+   "fieldname": "nature_engagement",
+   "fieldtype": "Small Text",
+   "label": "Nature de l'Engagement"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'D\u00e9pense' && doc.type_article == 'A priori' && !doc.is_transfert",
+   "fieldname": "section_depense_apriori",
+   "fieldtype": "Section Break",
+   "label": "D\u00e9tail Engagement \u2014 Article \u00c0 Priori"
+  },
+  {
+   "fieldname": "type_engagement_apriori",
+   "fieldtype": "Select",
+   "label": "Type d'Engagement",
+   "options": "\nBon Commande\nConvention\nFrais Mission"
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Bon Commande'",
+   "fieldname": "bon_commande",
+   "fieldtype": "Link",
+   "label": "Bon de Commande",
+   "options": "Bon Commande"
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Bon Commande'",
+   "fieldname": "bc_numero",
+   "fieldtype": "Data",
+   "label": "N\u00b0 BC",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Bon Commande'",
+   "fieldname": "bc_date",
+   "fieldtype": "Date",
+   "label": "Date BC",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Bon Commande'",
+   "fieldname": "bc_montant",
+   "fieldtype": "Currency",
+   "label": "Montant BC",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_dep",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Convention'",
+   "fieldname": "convention",
+   "fieldtype": "Link",
+   "label": "Convention / Contrat",
+   "options": "Convention"
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Convention'",
+   "fetch_from": "convention.numero_convention",
+   "fieldname": "conv_numero",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Convention",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Convention'",
+   "fetch_from": "convention.date_convention",
+   "fieldname": "conv_date",
+   "fieldtype": "Date",
+   "label": "Date Convention",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Convention'",
+   "fetch_from": "convention.montant_convention",
+   "fieldname": "conv_montant",
+   "fieldtype": "Currency",
+   "label": "Montant Convention",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Convention'",
+   "fetch_from": "convention.consultation_numero",
+   "fieldname": "reference_convention",
+   "fieldtype": "Data",
+   "label": "R\u00e9f\u00e9rence Convention",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_break_dep2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:in_list(['Bon Commande','Convention'], doc.type_engagement_apriori)",
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "label": "Fournisseur",
+   "options": "Fournisseur"
+  },
+  {
+   "fetch_from": "fournisseur.raison_sociale",
+   "fieldname": "raison_sociale",
+   "fieldtype": "Data",
+   "label": "Raison Sociale",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_engagement_apriori == 'Frais Mission'",
+   "fieldname": "frais_mission_apriori",
+   "fieldtype": "Link",
+   "label": "Frais de Mission",
+   "options": "Frais Mission"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'Provision' && doc.semestre == 'S2'",
+   "fieldname": "section_provision_s1",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9f\u00e9rence Provision S1"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'Provision' && doc.semestre == 'S2'",
+   "fieldname": "provision_s1_reference",
+   "fieldtype": "Link",
+   "label": "Provision S1 (r\u00e9f\u00e9rence)",
+   "options": "Fiche Budgetaire"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'R\u00e9gularisation'",
+   "fieldname": "section_provision_reference",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9f\u00e9rence Provision"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'R\u00e9gularisation'",
+   "fieldname": "provision_reference",
+   "fieldtype": "Link",
+   "label": "Provision du Semestre",
+   "options": "Fiche Budgetaire"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "section_provision_credit",
+   "fieldtype": "Section Break",
+   "label": "Lignes Provision / Cr\u00e9dit"
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "col_provision",
+   "fieldtype": "Column Break",
+   "label": "Ligne Provision"
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "provision_ancien_solde",
+   "fieldtype": "Currency",
+   "label": "Ancien Solde",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "provision_montant",
+   "fieldtype": "Currency",
+   "label": "Montant",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "provision_nouveau_solde",
+   "fieldtype": "Currency",
+   "label": "Nouveau Solde",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "col_credit",
+   "fieldtype": "Column Break",
+   "label": "Ligne Cr\u00e9dit Budg\u00e9taire"
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "credit_ancien_solde",
+   "fieldtype": "Currency",
+   "label": "Ancien Solde",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "credit_montant",
+   "fieldtype": "Currency",
+   "label": "Montant",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "credit_nouveau_solde",
+   "fieldtype": "Currency",
+   "label": "Nouveau Solde",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'R\u00e9gularisation'",
+   "fieldname": "section_regularisation",
+   "fieldtype": "Section Break",
+   "label": "D\u00e9tail des Engagements \u2014 R\u00e9gularisation"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'R\u00e9gularisation'",
+   "fieldname": "btn_ajouter_depenses",
+   "fieldtype": "Button",
+   "label": "Ajouter d\u00e9penses"
+  },
+  {
+   "depends_on": "eval:doc.type_fiche == 'R\u00e9gularisation'",
+   "fieldname": "depenses_regularisees",
+   "fieldtype": "Table",
+   "label": "D\u00e9penses \u00e0 R\u00e9gulariser",
+   "options": "Depense Regularisee Element"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_regularisation",
+   "fieldtype": "Currency",
+   "label": "Total R\u00e9gularisation (DA)",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_observations",
+   "fieldtype": "Section Break",
+   "label": "Observations du Service"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "ref_engagement_obs",
+   "fieldtype": "Small Text",
+   "label": "R\u00e9f\u00e9rence Engagement (Observations)"
+  },
+  {
+   "fieldname": "section_validation",
+   "fieldtype": "Section Break",
+   "label": "Validation"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_signature_doyen",
+   "fieldtype": "Date",
+   "label": "Date Signature Doyen"
+  },
+  {
+   "fieldname": "col_break_val",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "visa_cf_numero",
+   "fieldtype": "Data",
+   "label": "N\u00b0 Visa CF"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "date_visa_cf",
+   "fieldtype": "Date",
+   "label": "Date Visa CF"
+  },
+  {
+   "fieldname": "col_break_val2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "bold": 1,
+   "default": "Brouillon",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Statut",
+   "options": "Brouillon\nSign\u00e9 Doyen\nEnvoy\u00e9 CF\nVis\u00e9 CF\nRejet\u00e9\nRejet\u00e9 D\u00e9finitif\nArchiv\u00e9",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:in_list(['Rejet\u00e9', 'Rejet\u00e9 D\u00e9finitif'], doc.status)",
+   "fieldname": "section_rejet",
+   "fieldtype": "Section Break",
+   "label": "Motif Rejet"
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:in_list(['Rejet\u00e9', 'Rejet\u00e9 D\u00e9finitif'], doc.status)",
+   "fieldname": "motif_rejet",
+   "fieldtype": "Small Text",
+   "label": "Motif du Rejet"
+  },
+  {
+   "depends_on": "eval:doc.situation_paiement",
+   "fieldname": "section_suivi",
+   "fieldtype": "Section Break",
+   "label": "Suivi Paiement"
+  },
+  {
+   "fieldname": "situation_paiement",
+   "fieldtype": "Link",
+   "label": "Situation de Paiement",
+   "options": "Situation Paiement"
+  },
+  {
+   "allow_on_submit": 1,
+   "collapsible": 1,
+   "depends_on": "eval:doc.nb_rejets > 0",
+   "fieldname": "section_rejets_hist",
+   "fieldtype": "Section Break",
+   "label": "Historique des Rejets CF"
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "nb_rejets",
+   "fieldtype": "Int",
+   "label": "Nombre de Rejets CF",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "depends_on": "eval:doc.nb_rejets > 0",
+   "fieldname": "historique_rejets",
+   "fieldtype": "Table",
+   "label": "Historique des Rejets CF",
+   "options": "Rejet Fiche Element",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Fiche Budgetaire",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "article.code_partition",
+   "fieldname": "code_partition",
+   "fieldtype": "Data",
+   "label": "Partition",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "article.code_article",
+   "fieldname": "code_article",
+   "fieldtype": "Data",
+   "label": "Code Article",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "titre.intitule",
+   "fieldname": "intitule_titre",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Titre"
+  },
+  {
+   "fieldname": "column_break_egtq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "article_contrepartie.intitule_article",
+   "fieldname": "intitule_article_contrepartie",
+   "fieldtype": "Data",
+   "label": "Intitul\u00e9 Article Contrepartie",
+   "length": 1000
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "provision_obs_service",
+   "fieldtype": "Data",
+   "label": "Obs Service"
+  },
+  {
+   "depends_on": "eval:in_list(['Provision', 'R\u00e9gularisation'], doc.type_fiche)",
+   "fieldname": "credit_obs_service",
+   "fieldtype": "Data",
+   "label": "Obs Service"
+  },
+  {
+   "fieldname": "budget_global",
+   "fieldtype": "Link",
+   "label": "Exercice",
+   "options": "Budget Global"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Ordonnateur",
+   "options": "Cost Center"
+  },
+  {
+   "fetch_from": "titre.code",
+   "fieldname": "code_titre",
+   "fieldtype": "Data",
+   "label": "Code Titre"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [
+  {
+   "group": "D\u00e9penses Internes",
+   "link_doctype": "Depense Interne",
+   "link_fieldname": "article"
+  },
+  {
+   "group": "Mandats",
+   "link_doctype": "Mandat Paiement",
+   "link_fieldname": "fiche_depense"
+  }
+ ],
+ "modified": "2026-06-20 17:35:29.433143",
+ "modified_by": "Administrator",
+ "module": "Gestion Financiere",
+ "name": "Fiche Budgetaire",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Brouillon"
+  },
+  {
+   "color": "Orange",
+   "title": "Sign\u00e9 Doyen"
+  },
+  {
+   "color": "Blue",
+   "title": "Envoy\u00e9 CF"
+  },
+  {
+   "color": "Green",
+   "title": "Vis\u00e9 CF"
+  },
+  {
+   "color": "Gray",
+   "title": "Archiv\u00e9"
+  },
+  {
+   "color": "Red",
+   "title": "Rejet\u00e9"
+  },
+  {
+   "color": "Red",
+   "title": "Rejet\u00e9 D\u00e9finitif"
+  }
+ ],
+ "title_field": "numero_fiche",
+ "track_changes": 1
+}
