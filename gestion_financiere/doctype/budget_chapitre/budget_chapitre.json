@@ -59,7 +59,7 @@
    "fetch_from": "budget.cost_center",
    "fieldname": "cost_center",
    "fieldtype": "Link",
-   "label": "Facult\u00e9",
+   "label": "Structure de Rattachement",
    "options": "Cost Center",
    "read_only": 1
   },
@@ -80,7 +80,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-21 11:39:30.991201",
+ "modified": "2026-06-24 10:40:53.743241",
  "modified_by": "Administrator",
  "module": "Gestion Financiere",
  "name": "Budget Chapitre",

@@ -2,14 +2,12 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:{annee}",
- "creation": "2026-01-13 13:43:42.593194",
+ "creation": "2026-06-29 13:23:56.778665",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "ann\u00e9e_budgetaire_section",
   "annee",
-  "date_ouverture",
-  "date_cloture",
   "active",
   "status"
  ],
@@ -23,21 +21,7 @@
    "fieldname": "annee",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Ann\u00e9e",
-   "reqd": 1
-  },
-  {
-   "fieldname": "date_ouverture",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Date d'ouverture",
-   "reqd": 1
-  },
-  {
-   "fieldname": "date_cloture",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Date de cl\u00f4ture ",
+   "label": "Exercice",
    "reqd": 1
   },
   {
@@ -49,14 +33,14 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
-   "label": "status",
+   "label": "Status",
    "options": "En pr\u00e9paration\nEn cours\nCl\u00f4tur\u00e9e"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-06-17 13:59:43.012072",
+ "modified": "2026-06-29 13:37:58.382668",
  "modified_by": "Administrator",
  "module": "Gestion Financiere",
  "name": "Annee Budgetaire",
